@@ -4,28 +4,28 @@
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Cocktail.cs</FileName>
+      <FileName>Model\Cocktail.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Pump">
     <Position X="9.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Pump.cs</FileName>
+      <FileName>Model\Pump.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Pumps">
     <Position X="7.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Pumps.cs</FileName>
+      <FileName>Model\Pumps.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Recipe">
     <Position X="3" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAgAAAABAAAACQAAAAAABAAAAAAABAAAAA=</HashCode>
-      <FileName>Recipe.cs</FileName>
+      <FileName>Model\Recipe.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Dashs" />
@@ -36,35 +36,35 @@
     <Position X="11" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Recipes.cs</FileName>
+      <FileName>Model\Recipes.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Ingredients">
     <Position X="3.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Ingredients.cs</FileName>
+      <FileName>Model\Ingredients.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Ingredient">
     <Position X="10.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAEAAAAAA=</HashCode>
-      <FileName>Ingredient.cs</FileName>
+      <FileName>Model\Ingredient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Extra">
     <Position X="5.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Extra.cs</FileName>
+      <FileName>Model\Extra.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocktailPi.Dash">
     <Position X="6" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAEAAAAAA=</HashCode>
-      <FileName>Dash.cs</FileName>
+      <FileName>Model\Dash.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
