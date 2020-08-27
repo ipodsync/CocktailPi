@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="CocktailPi.DrinkDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CocktailPi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="grid"  Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Grid.RowSpan="2" Source="{x:Bind Item.Image}" Width="128" Margin="6,0,6,0"
+                     HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+        
+        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="6,0,0,0">
+            
+            <TextBlock Text="{x:Bind Item.Name}"  Margin="12,0,0,0" 
+                    Style="{ThemeResource BaseTextBlockStyle}" FontSize="24" />
+            
+            <TextBlock  Text="{x:Bind Item.Description, Mode=OneWay}" Margin="12,0,0,6" FontSize="18"
+                    Style="{ThemeResource BodyTextBlockStyle}"/>
+
+            <Grid x:Name="gridDirections"  Margin="12,12,12,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="I'll mix these ingredients:" FontSize="16" FontWeight="Bold" />
+
+                    <ListView x:Name="AutoIngredients" ItemsSource="{x:Bind Item.Ingredients}" IsItemClickEnabled="False" 
+                      IsFocusEngaged="False" IsTextScaleFactorEnabled="False" IsMultiSelectCheckBoxEnabled="False" 
+                      AllowFocusOnInteraction="False" IsHoldingEnabled="False" IsHitTestVisible="False">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="MinHeight" Value="1"/>
+                                <Setter Property="Height" Value="25"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Ingredient">
+                                <TextBlock Text="{x:Bind Caption}" FontSize="16"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" x:Name="Addons" Orientation="Vertical" Visibility="{x:Bind Item.ShowAddons}" >
+                    <TextBlock Text="You add the following:" FontSize="16" FontWeight="Bold" />
+
+                    <ListView x:Name="DashList" ItemsSource="{x:Bind Item.Dashs}" IsItemClickEnabled="False" 
+                      IsFocusEngaged="False" IsTextScaleFactorEnabled="False" IsMultiSelectCheckBoxEnabled="False" 
+                      AllowFocusOnInteraction="False" IsHoldingEnabled="False" IsHitTestVisible="False">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="MinHeight" Value="1"/>
+                                <Setter Property="Height" Value="25"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Dash">
+                                <TextBlock Text="{x:Bind Caption}" FontSize="16"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView x:Name="ExtrasList" ItemsSource="{x:Bind Item.Extras}" IsItemClickEnabled="False" 
+                      IsFocusEngaged="False" IsTextScaleFactorEnabled="False" IsMultiSelectCheckBoxEnabled="False" 
+                      AllowFocusOnInteraction="False" IsHoldingEnabled="False" IsHitTestVisible="False">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="MinHeight" Value="1"/>
+                                <Setter Property="Height" Value="25"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Extra">
+                                <TextBlock Text="{x:Bind Name}" FontSize="16"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Button Content="{x:Bind Item.ExecuteCaption}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" Click="Button_Click"/>
+    </Grid>
+</Page>
