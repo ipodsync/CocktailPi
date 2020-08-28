@@ -147,6 +147,9 @@
     <Compile Include="Model\Pump.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\Recipes.cs" />
+    <Compile Include="PumpListItem.xaml.cs">
+      <DependentUpon>PumpListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PumpsPage.xaml.cs">
       <DependentUpon>PumpsPage.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PumpListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PumpsPage.xaml">
       <SubType>Designer</SubType>
