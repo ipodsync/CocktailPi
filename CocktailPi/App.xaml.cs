@@ -22,6 +22,9 @@ namespace CocktailPi
     /// </summary>
     sealed partial class App : Application
     {
+
+        public Cocktail Cocktail { get; set; } = null;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,6 +33,8 @@ namespace CocktailPi
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Cocktail = new Cocktail();
+            Cocktail.Init();
         }
 
         /// <summary>

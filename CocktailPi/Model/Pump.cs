@@ -8,6 +8,8 @@ namespace CocktailPi
 {
     public class Pump
     {
+        public int Number { get; set; } = 0;
+
         public string Ingredient { get; set; } = "";
     }
 }

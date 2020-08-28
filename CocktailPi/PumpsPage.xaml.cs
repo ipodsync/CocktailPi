@@ -20,24 +20,11 @@ namespace CocktailPi
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class HomePage : Page
+    public sealed partial class PumpsPage : Page
     {
-
-        public HomePage()
+        public PumpsPage()
         {
             this.InitializeComponent();
-            App a = (App)Application.Current;
-            DrinkList.ItemsSource = a.Cocktail.Recipes;
-        }
-
-        private void listItemClicked(object sender, ItemClickEventArgs e)
-        {
-            Frame frame = (Frame)Window.Current.Content;
-            MainPage page = (MainPage)frame.Content;
-            page.ContentFrame.Navigate(typeof(DrinkDetails));
-
-            DrinkDetails detailPage = (DrinkDetails)page.ContentFrame.Content;
-            detailPage.Item = (Recipe)e.ClickedItem; 
         }
     }
 }
