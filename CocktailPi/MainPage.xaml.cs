@@ -47,7 +47,7 @@ namespace CocktailPi
         {
             if (args.IsSettingsInvoked)
             {
-                ContentFrame.Navigate(typeof(BottlesPage));
+                ContentFrame.Navigate(typeof(PumpsPage));
             }
             else
             {
@@ -66,14 +66,14 @@ namespace CocktailPi
                     break;
 
                 case "pageBottles":
-                    ContentFrame.Navigate(typeof(BottlesPage));
+                    ContentFrame.Navigate(typeof(PumpsPage));
                     break;
             }
         }
 
         public bool NavigateTo(Type sourcePageType)
         {
-             return ContentFrame.Navigate(typeof(BottlesPage)); 
+             return ContentFrame.Navigate(typeof(PumpsPage)); 
         }
 
         private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)

@@ -23,12 +23,18 @@ namespace CocktailPi
 
         public Pumps Pumps { get; private set; }
 
+        public Ingredients Ingredients { get; private set; }
+
 
         public void Init()
         {
+            Ingredients = new Ingredients();
+            Ingredients.Load();
+
             Recipes = new Recipes();
             Recipes.Load();
 
+            /*
             gpio = GpioController.GetDefault();
             if (gpio == null)
                 return;
@@ -40,8 +46,11 @@ namespace CocktailPi
             pinDirection = gpio.OpenPin(PIN_DIRECTION);
             pinDirection.Write(GpioPinValue.Low);
             pinDirection.SetDriveMode(GpioPinDriveMode.InputPullDown);
+            */
 
             #region Pumps
+
+            Pumps = new Pumps();
 
             AddPump(1, "Bourbon", 10);
             AddPump(2, "Compari", 11);

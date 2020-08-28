@@ -25,6 +25,19 @@ namespace CocktailPi
         public PumpsPage()
         {
             this.InitializeComponent();
+            App a = (App)Application.Current;
+            PumpList.ItemsSource = a.Cocktail.Pumps;
+            
+        }
+
+        private void listItemClicked(object sender, ItemClickEventArgs e)
+        {
+            //Frame frame = (Frame)Window.Current.Content;
+            //MainPage page = (MainPage)frame.Content;
+            //page.ContentFrame.Navigate(typeof(DrinkDetails));
+
+            //DrinkDetails detailPage = (DrinkDetails)page.ContentFrame.Content;
+            //detailPage.Item = (Recipe)e.ClickedItem;
         }
     }
 }

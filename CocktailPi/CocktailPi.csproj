@@ -160,7 +160,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Recipes.xml">
+    <EmbeddedResource Include="Data\Recipes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Assets\Drink_Boulevardier.jpg" />
@@ -172,7 +172,7 @@
     <Content Include="Assets\Drink_Manhattan.jpg" />
     <Content Include="Assets\Drink_Negroni.jpg" />
     <Content Include="Assets\Drink_RustyNail.jpg" />
-    <Content Include="Ingredients.xml">
+    <Content Include="Data\Ingredients.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Properties\Default.rd.xml" />

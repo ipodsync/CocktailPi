@@ -12,12 +12,15 @@ namespace CocktailPi
         public Ingredient(XmlElement node)
         {
             Name = node.GetAttribute("Name");
-            Qnty = float.Parse(node.GetAttribute("Qnty"));
+            if (node.HasAttribute("Qnty"))
+            {
+                Qnty = float.Parse(node.GetAttribute("Qnty"));
+            }
         }
 
         public string Name { get; set; }
 
-        public float Qnty { get; set; } = 0;
+        public float Qnty { get; set; } = -1;
 
         public string Caption
         {

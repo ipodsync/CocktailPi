@@ -10,24 +10,27 @@
 
     <Grid>
 
-        <!--<ListView x:Name="PumpList" ItemClick="listItemClicked" IsItemClickEnabled="True">
+        <ListView x:Name="PumpList" ItemClick="listItemClicked" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Pump">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                    Height="64" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
-                        <TextBlock Grid.Column="1" Text="{x:Bind Number}" Margin="12,6,0,0" 
-                    Style="{ThemeResource BaseTextBlockStyle}" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="{x:Bind Number}" Margin="12,6,0,0"  Style="{ThemeResource BaseTextBlockStyle}" FontSize="18"/>
+                        <!--<TextBlock Grid.Column="2" Text="{x:Bind Ingredient}" Margin="12,6,0,0"  Style="{ThemeResource BaseTextBlockStyle}" FontSize="18"/>-->
+                        <ComboBox x:Name="cboIngredient" Text="{x:Bind Ingredient}" Margin="12,6,0,0"  Style="{ThemeResource BaseTextBlockStyle}" FontSize="18"/>
+                        <Button x:Name="cmdPrime" Grid.Column="3" Content="Prime"/>
+                        <Button x:Name="cmdRecover" Grid.Column="4" Content="Recover"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>-->
+        </ListView>
     </Grid>
 </Page>

@@ -16,7 +16,7 @@ namespace CocktailPi
         public void Load()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("Recipes.xml");
+            doc.Load(@"Data\Recipes.xml");
             //ResourceLoader.GetForCurrentView()
             //ResourceMap resourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
             //string XML = resourceMap.GetValue("Recipes").ValueAsString;
