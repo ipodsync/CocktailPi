@@ -27,7 +27,7 @@ namespace CocktailPi
         {
             this.InitializeComponent();
             App a = (App)Application.Current;
-            DrinkList.ItemsSource = a.Cocktail.Recipes;
+            DrinkList.ItemsSource = Cocktail.Recipes;
         }
 
         private void listItemClicked(object sender, ItemClickEventArgs e)

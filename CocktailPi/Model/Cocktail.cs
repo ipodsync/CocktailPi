@@ -7,26 +7,26 @@ using Windows.Devices.Gpio;
 
 namespace CocktailPi
 {
-    public class Cocktail
+    public static class Cocktail
     {
         const int STEPS_PER_ROTATION = 200;
         const int ROTATIONS_PER_OUNCE = 130;
         const int PIN_ENABLE = 7;
         const int PIN_DIRECTION = 8;
 
-        GpioController gpio;
-        GpioPin pinEnable;
-        GpioPin pinDirection;
+        static GpioController gpio;
+        static GpioPin pinEnable;
+        static GpioPin pinDirection;
         
 
-        public Recipes Recipes { get; private set; }
+        public static Recipes Recipes { get; private set; }
 
-        public Pumps Pumps { get; private set; }
+        public static Pumps Pumps { get; private set; }
 
-        public Ingredients Ingredients { get; private set; }
+        public static Ingredients Ingredients { get; private set; }
 
 
-        public void Init()
+        public static void Init()
         {
             Ingredients = new Ingredients();
             Ingredients.Load();
@@ -68,7 +68,7 @@ namespace CocktailPi
             #endregion
         }
 
-        Pump AddPump (int number, string ingredient, int pin)
+        static Pump AddPump (int number, string ingredient, int pin)
         {
             Pump pump = new Pump();
             pump.Number = number;

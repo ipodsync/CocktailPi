@@ -25,10 +25,11 @@ namespace CocktailPi
         public PumpsPage()
         {
             this.InitializeComponent();
-            App a = (App)Application.Current;
-            PumpList.ItemsSource = a.Cocktail.Pumps;
+            Items = Cocktail.Pumps;
             
         }
+
+        public Pumps Items { get; set; }
 
         private void listItemClicked(object sender, ItemClickEventArgs e)
         {

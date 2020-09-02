@@ -10,6 +10,8 @@ namespace CocktailPi
     {
         public int Number { get; set; } = 0;
 
+        public string Title { get => $"Pump {Number}"; }
+
         public string Ingredient { get; set; } = "";
     }
 }
