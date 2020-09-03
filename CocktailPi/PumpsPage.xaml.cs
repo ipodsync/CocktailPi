@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -39,6 +40,34 @@ namespace CocktailPi
 
             //DrinkDetails detailPage = (DrinkDetails)page.ContentFrame.Content;
             //detailPage.Item = (Recipe)e.ClickedItem;
+        }
+
+        private void OnStartPrime(object sender, PointerRoutedEventArgs e)
+        {
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StartPrime();           
+        }
+
+        private void OnStopPrime(object sender, PointerRoutedEventArgs e)
+        {
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StopPrime();
+        }
+
+        private void OnStartRecover(object sender, PointerRoutedEventArgs e)
+        {
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StartRecover();
+        }
+
+        private void OnStopRecover(object sender, PointerRoutedEventArgs e)
+        {
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StopRecover();
         }
     }
 }

@@ -17,6 +17,26 @@ namespace CocktailPi
         static GpioController gpio;
         static GpioPin pinEnable;
         static GpioPin pinDirection;
+
+        internal static void SetPumpDirectionOut()
+        {
+            pinDirection?.Write(GpioPinValue.High);
+        }
+
+        internal static void SetPumpDirectionIn()
+        {
+            pinDirection?.Write(GpioPinValue.Low);
+        }
+
+        internal static void EnableMotorDrivers()
+        {
+            pinEnable?.Write(GpioPinValue.High);
+        }
+
+        internal static void DisableMotorDrivers()
+        {
+            pinEnable?.Write(GpioPinValue.Low);
+        }
         
 
         public static Recipes Recipes { get; private set; }
@@ -24,6 +44,7 @@ namespace CocktailPi
         public static Pumps Pumps { get; private set; }
 
         public static Ingredients Ingredients { get; private set; }
+
 
 
         public static void Init()
@@ -34,19 +55,18 @@ namespace CocktailPi
             Recipes = new Recipes();
             Recipes.Load();
 
-            /*
+            
             gpio = GpioController.GetDefault();
-            if (gpio == null)
-                return;
+            if (gpio != null)
+            {
+                pinEnable = gpio.OpenPin(PIN_ENABLE);
+                pinEnable.Write(GpioPinValue.High);
+                pinEnable.SetDriveMode(GpioPinDriveMode.InputPullDown);
 
-            pinEnable = gpio.OpenPin(PIN_ENABLE);
-            pinEnable.Write(GpioPinValue.High);
-            pinEnable.SetDriveMode(GpioPinDriveMode.InputPullDown);
-
-            pinDirection = gpio.OpenPin(PIN_DIRECTION);
-            pinDirection.Write(GpioPinValue.Low);
-            pinDirection.SetDriveMode(GpioPinDriveMode.InputPullDown);
-            */
+                pinDirection = gpio.OpenPin(PIN_DIRECTION);
+                pinDirection.Write(GpioPinValue.Low);
+                pinDirection.SetDriveMode(GpioPinDriveMode.InputPullDown);
+            }
 
             #region Pumps
 
@@ -68,11 +88,20 @@ namespace CocktailPi
             #endregion
         }
 
-        static Pump AddPump (int number, string ingredient, int pin)
+        static Pump AddPump(int number, string ingredient, int pinNumber)
         {
             Pump pump = new Pump();
             pump.Number = number;
             pump.Ingredient = ingredient;
+
+            if (gpio != null)
+            {
+                GpioPin pin = gpio.OpenPin(pinNumber);
+                pin.Write(GpioPinValue.High);
+                pin.SetDriveMode(GpioPinDriveMode.InputPullDown);
+                pump.Pin = pin;
+            }
+
             Pumps.Add(pump);
             return pump;
         }
