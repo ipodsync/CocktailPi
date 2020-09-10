@@ -10,13 +10,15 @@ namespace CocktailPi
 {
     public class Pump
     {
-        public int Number { get; set; } = 0;
+        public string ID { get; set; } = "";
 
-        public string Title { get => $"Pump {Number:00}"; }
+        public string Title { get => $"Pump {ID:00}"; }
 
         public string Ingredient { get; set; } = "";
 
         public GpioPin Pin { get; set; } = null;
+
+        public int Steps { get; set; } = 0;
 
         internal void StartPrime()
         {

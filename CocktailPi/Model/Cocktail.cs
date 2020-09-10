@@ -11,6 +11,8 @@ namespace CocktailPi
     {
         const int STEPS_PER_ROTATION = 200;
         const int ROTATIONS_PER_OUNCE = 130;
+        const int STEPS_PER_OUNCE = STEPS_PER_ROTATION * ROTATIONS_PER_OUNCE;
+
         const int PIN_ENABLE = 7;
         const int PIN_DIRECTION = 8;
 
@@ -72,27 +74,27 @@ namespace CocktailPi
 
             Pumps = new Pumps();
 
-            AddPump(1, "Bourbon", 10);
-            AddPump(2, "Compari", 11);
-            AddPump(3, "Rye", 12);
-            AddPump(4, "Gin", 13);
-            AddPump(5, "Aperol", 14);
-            AddPump(6, "Scotch", 15);
-            AddPump(7, "Drambuie", 16);
-            AddPump(8, "", 17);
-            AddPump(9, "", 18);
-            AddPump(10, "", 19);
-            AddPump(11, "", 21);
-            AddPump(12, "", 22);
+            AddPump("A1", "Bourbon", 10);
+            AddPump("A2", "Campari", 11);
+            AddPump("A3", "Rye", 12);
+            AddPump("A4", "Gin", 13);
+            AddPump("B1", "Aperol", 14);
+            AddPump("B2", "Scotch", 15);
+            AddPump("B3", "Drambuie", 16);
+            AddPump("B4", "", 17);
+            AddPump("C1", "", 18);
+            AddPump("C2", "", 19);
+            AddPump("C3", "", 21);
+            AddPump("C4", "", 22);
 
             #endregion
         }
 
-        static Pump AddPump(int number, string ingredient, int pinNumber)
+        static Pump AddPump(string ID, string ingredientName, int pinNumber)
         {
             Pump pump = new Pump();
-            pump.Number = number;
-            pump.Ingredient = ingredient;
+            pump.ID = ID;
+            pump.Ingredient = ingredientName;
 
             if (gpio != null)
             {
@@ -104,6 +106,30 @@ namespace CocktailPi
 
             Pumps.Add(pump);
             return pump;
+        }
+
+        static public void LoadRecipeOntoPumps (Recipe recipe)
+        {
+            foreach (Pump p in Pumps)
+            {
+                p.Steps = 0;
+            }
+
+            foreach (Ingredient i in recipe.Ingredients)
+            {
+                Pump p = FindIngredientPump(i.Name);
+                p.Steps = (int)((float)STEPS_PER_OUNCE * i.Qnty);
+            }
+        }
+
+        static public Pump FindIngredientPump (string ingredient)
+        {
+            foreach (Pump p in Pumps)
+            {
+                if (p.Ingredient.Equals(ingredient))
+                    return p;
+            }
+            return null;
         }
     }
 }

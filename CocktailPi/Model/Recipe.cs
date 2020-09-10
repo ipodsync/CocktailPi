@@ -66,7 +66,10 @@ namespace CocktailPi
         {
             get
             {
-                return $"Bartender!  Mix me a {Name}!";
+                if (CanMakeRecipe)
+                    return $"Bartender!  Mix me a {Name}!";
+
+                return "Unable to make cocktail.   Missing key ingredients.  :(";
             }
         }
 
@@ -77,5 +80,19 @@ namespace CocktailPi
         public List<Dash> Dashs { get; private set; } = new List<Dash>();
 
         public List<Extra> Extras { get; private set; } = new List<Extra>();
+
+        public bool CanMakeRecipe
+        {
+            get
+            {
+                foreach (Ingredient i in Ingredients)
+                {
+                    if (Cocktail.FindIngredientPump(i.Name) == null)
+                        return false;
+                }
+                return true;
+            }
+        }
+
     }
 }
