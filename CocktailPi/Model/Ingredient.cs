@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Windows.UI.Text;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace CocktailPi
@@ -50,6 +52,14 @@ namespace CocktailPi
             get
             {
                 return IsIngredientAvailable ? new SolidColorBrush(Windows.UI.Colors.Black) : new SolidColorBrush(Windows.UI.Colors.Red);
+            }
+        }
+
+        public FontWeight CaptionFontWeight
+        {
+            get
+            {
+                return IsIngredientAvailable ? FontWeights.Normal : FontWeights.Bold;
             }
         }
     }

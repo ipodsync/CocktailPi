@@ -50,7 +50,7 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="local:Ingredient">
-                                <TextBlock Text="{x:Bind Caption}" FontSize="16" Foreground="{x:Bind LabelColor}"/>
+                                <TextBlock Text="{x:Bind Caption}" FontSize="16" Foreground="{x:Bind LabelColor}" FontWeight="{x:Bind CaptionFontWeight}"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
