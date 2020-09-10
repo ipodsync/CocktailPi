@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
+using Windows.Storage;
 
 namespace CocktailPi
 {
@@ -50,5 +51,19 @@ namespace CocktailPi
             Cocktail.DisableMotorDrivers();
         }
 
+        public void SaveConfiguration()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values[$"{ID}.Ingredient"] = Ingredient;
+        }
+
+        public void LoadConfiguration()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.ContainsKey($"{ID}.Ingredient"))
+            {
+                Ingredient = localSettings.Values[$"{ID}.Ingredient"] as string;
+            }
+        }
     }
 }

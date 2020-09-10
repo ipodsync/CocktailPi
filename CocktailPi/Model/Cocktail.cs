@@ -87,6 +87,8 @@ namespace CocktailPi
             AddPump("C3", "", 21);
             AddPump("C4", "", 22);
 
+            Pumps.LoadConfiguration();
+
             #endregion
         }
 
