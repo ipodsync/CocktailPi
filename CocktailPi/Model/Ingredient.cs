@@ -11,7 +11,12 @@ namespace CocktailPi
 {
     public class Ingredient
     {
-        public Ingredient(XmlElement node)
+        public Ingredient(string name            )
+        {
+            Name = name;
+        }
+
+            public Ingredient(XmlElement node)
         {
             Name = node.GetAttribute("Name");
             if (node.HasAttribute("Qnty"))
