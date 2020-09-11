@@ -11,6 +11,8 @@ namespace CocktailPi
 {
     public class Pump
     {
+        #region Properties 
+
         public string ID { get; set; } = "";
 
         public string Title { get => $"Pump {ID:00}"; }
@@ -20,6 +22,10 @@ namespace CocktailPi
         public GpioPin Pin { get; set; } = null;
 
         public int Steps { get; set; } = 0;
+
+        #endregion
+
+        #region Hardware
 
         internal void StartPrime()
         {
@@ -51,6 +57,20 @@ namespace CocktailPi
             Cocktail.DisableMotorDrivers();
         }
 
+        public void PinHigh()
+        {
+            Pin?.Write(GpioPinValue.High);
+        }
+
+        public void PinLow()
+        {
+            Pin?.Write(GpioPinValue.Low);
+        }
+
+        #endregion
+
+        #region Persistance 
+
         public void SaveConfiguration()
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -65,16 +85,7 @@ namespace CocktailPi
                 Ingredient = localSettings.Values[$"{ID}.Ingredient"] as string;
             }
         }
-        public void PinHigh()
-        {
-            Pin?.Write(GpioPinValue.High);
-        }
 
-        public void PinLow()
-        {
-            Pin?.Write(GpioPinValue.Low);
-        }
-
-
+        #endregion
     }
 }

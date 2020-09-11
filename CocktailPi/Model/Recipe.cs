@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,8 @@ namespace CocktailPi
             }
         }
 
+        #region Properties
+
         public string Name { get; set; } = "";
 
         public string Description { get; set; } = "";
@@ -94,6 +97,17 @@ namespace CocktailPi
             }
         }
 
-        public int ExecutionProgress { get; set; } = 0;
+        int _executionProgress = 0;
+        public int ExecutionProgress
+        {
+            get => _executionProgress;
+            set
+            {
+                _executionProgress = value;
+                Debug.Print($"Percent={ExecutionProgress}\r\n");
+            }
+        }
+
+        #endregion
     }
 }

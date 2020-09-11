@@ -17,11 +17,6 @@ namespace CocktailPi
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(@"Data\Recipes.xml");
-            //ResourceLoader.GetForCurrentView()
-            //ResourceMap resourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
-            //string XML = resourceMap.GetValue("Recipes").ValueAsString;
-            //var resources = new Windows.ApplicationModel.Resources.ResourceLoader("Resources.resw");
-            //doc.LoadXml(resources.GetString("recipes"));
             foreach (XmlElement node in doc.SelectNodes("//Recipe"))
             {
                 Recipe recipe = new Recipe(node);
@@ -29,6 +24,4 @@ namespace CocktailPi
             }
         }
     }
-
-
 }

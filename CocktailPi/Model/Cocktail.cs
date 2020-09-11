@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Activation;
 using Windows.Devices.Gpio;
 
 namespace CocktailPi
@@ -20,6 +21,8 @@ namespace CocktailPi
         static GpioController gpio;
         static GpioPin pinEnable;
         static GpioPin pinDirection;
+
+        #region Hardware
 
         internal static void SetPumpDirectionOut()
         {
@@ -41,6 +44,74 @@ namespace CocktailPi
             pinEnable?.Write(GpioPinValue.Low);
         }
 
+
+        public static async void ExecuteRecipe(Recipe recipe)
+        {
+            LoadRecipeOntoPumps(recipe);
+            Pumps.DebugPumpUsage();
+
+            SetPumpDirectionOut();
+            EnableMotorDrivers();
+
+            bool recipeComplete = false;
+            int step = 0;
+            int totalSteps = Pumps.MaxSteps;
+            int percent = 0;
+            int newPercent = 0;
+            recipe.ExecutionProgress = 0;
+
+            while (!recipeComplete)
+            {
+                recipeComplete = true;
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        p.PinHigh();
+
+                    }
+                }
+                StepDelay();
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        //Debug.Print($"{p.ID}-{p.Steps}\t");
+
+                        p.PinLow();
+                        p.Steps--;
+                        if (p.Steps > 0)
+                        {
+                            recipeComplete = false;
+                        }
+                    }
+                }
+                StepDelay();
+                step++;
+
+                newPercent = (int)(((float)step / (float)totalSteps) * 100);
+                if (newPercent != percent)
+                {
+                    percent = newPercent;
+                    recipe.ExecutionProgress = percent;
+                }
+
+                //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
+
+            }
+            DisableMotorDrivers();
+        }
+
+        static void StepDelay(long us = 600)
+        {
+            var sw = Stopwatch.StartNew();
+            long v = (us * Stopwatch.Frequency) / 1000000;
+            while (sw.ElapsedTicks < v)
+            {
+            }
+        }
+
+        #endregion
 
         public static Recipes Recipes { get; private set; }
 
@@ -133,59 +204,6 @@ namespace CocktailPi
                     return p;
             }
             return null;
-        }
-
-        public static void ExecuteRecipe(Recipe recipe)
-        {
-            LoadRecipeOntoPumps(recipe);
-            Pumps.DebugPumpUsage();
-            bool recipeComplete = false;
-            int step = 0;
-            int totalSteps = Pumps.MaxSteps;
-            while (!recipeComplete)
-            {
-                recipeComplete = true;
-                recipe.ExecutionProgress = 0;
-                foreach (Pump p in Pumps)
-                {
-                    if (p.Steps > 0)
-                    {
-                        p.PinHigh();
-
-                    }
-                }
-                StepDepay();
-                foreach (Pump p in Pumps)
-                {
-                    if (p.Steps > 0)
-                    {
-                        //Debug.Print($"{p.ID}-{p.Steps}\t");
-
-                        p.PinLow();
-                        p.Steps--;
-                        if (p.Steps > 0)
-                        {
-                            recipeComplete = false;
-                        }
-                    }
-                }
-                StepDepay();
-                step++;
-                recipe.ExecutionProgress = (int)(((float)step / (float)totalSteps) * 100);
-                //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
-            }
-        }
-
-        
-
-
-        static void StepDepay(long us = 600)
-        {
-            var sw = System.Diagnostics.Stopwatch.StartNew();
-            long v = (us * System.Diagnostics.Stopwatch.Frequency) / 1000000;
-            while (sw.ElapsedTicks < v)
-            {
-            }
         }
 
     }

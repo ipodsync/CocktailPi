@@ -13,12 +13,12 @@ namespace CocktailPi
 {
     public class Ingredient
     {
-        public Ingredient(string name            )
+        public Ingredient(string name)
         {
             Name = name;
         }
 
-            public Ingredient(XmlElement node)
+        public Ingredient(XmlElement node)
         {
             Name = node.GetAttribute("Name");
             if (node.HasAttribute("Qnty"))
@@ -26,6 +26,8 @@ namespace CocktailPi
                 Qnty = float.Parse(node.GetAttribute("Qnty"));
             }
         }
+
+        #region Properties
 
         public string Name { get; set; }
 
@@ -62,5 +64,7 @@ namespace CocktailPi
                 return IsIngredientAvailable ? FontWeights.Normal : FontWeights.Bold;
             }
         }
+
+        #endregion
     }
 }

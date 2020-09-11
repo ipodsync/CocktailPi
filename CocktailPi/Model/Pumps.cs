@@ -10,6 +10,7 @@ namespace CocktailPi
 {
     public class Pumps : List<Pump>
     {
+        #region Persistance 
 
         public void SaveConfiguration ()
         {
@@ -26,6 +27,8 @@ namespace CocktailPi
                 p.LoadConfiguration();
             }
         }
+
+        #endregion
 
         public int MaxSteps
         {
