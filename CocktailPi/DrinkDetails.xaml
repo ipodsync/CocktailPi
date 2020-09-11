@@ -93,7 +93,11 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <Button Content="{x:Bind Item.ExecuteCaption}" Grid.Column="1" Grid.Row="1"
+        <ProgressBar Grid.Column="1" Grid.Row="1"
+                     VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" Height="10" Visibility="Visible"
+                     Value="{x:Bind Item.ExecutionProgress}"
+                     />
+        <Button Content="{x:Bind Item.ExecuteCaption}" Grid.Column="1" Grid.Row="1" Name="cmdExecute"
                 VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" FontSize="16" FontWeight="Bold"
                 Click="Button_Click" IsEnabled="{x:Bind Item.CanMakeRecipe}"
                 />

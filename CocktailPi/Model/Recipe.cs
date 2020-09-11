@@ -94,5 +94,6 @@ namespace CocktailPi
             }
         }
 
+        public int ExecutionProgress { get; set; } = 0;
     }
 }

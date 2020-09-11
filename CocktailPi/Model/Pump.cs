@@ -65,5 +65,16 @@ namespace CocktailPi
                 Ingredient = localSettings.Values[$"{ID}.Ingredient"] as string;
             }
         }
+        public void PinHigh()
+        {
+            Pin?.Write(GpioPinValue.High);
+        }
+
+        public void PinLow()
+        {
+            Pin?.Write(GpioPinValue.Low);
+        }
+
+
     }
 }

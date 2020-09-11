@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace CocktailPi
         {
             pinEnable?.Write(GpioPinValue.Low);
         }
-        
+
 
         public static Recipes Recipes { get; private set; }
 
@@ -57,7 +58,7 @@ namespace CocktailPi
             Recipes = new Recipes();
             Recipes.Load();
 
-            
+
             gpio = GpioController.GetDefault();
             if (gpio != null)
             {
@@ -110,7 +111,7 @@ namespace CocktailPi
             return pump;
         }
 
-        static public void LoadRecipeOntoPumps (Recipe recipe)
+        static public void LoadRecipeOntoPumps(Recipe recipe)
         {
             foreach (Pump p in Pumps)
             {
@@ -124,7 +125,7 @@ namespace CocktailPi
             }
         }
 
-        static public Pump FindIngredientPump (string ingredient)
+        static public Pump FindIngredientPump(string ingredient)
         {
             foreach (Pump p in Pumps)
             {
@@ -133,5 +134,59 @@ namespace CocktailPi
             }
             return null;
         }
+
+        public static void ExecuteRecipe(Recipe recipe)
+        {
+            LoadRecipeOntoPumps(recipe);
+            Pumps.DebugPumpUsage();
+            bool recipeComplete = false;
+            int step = 0;
+            int totalSteps = Pumps.MaxSteps;
+            while (!recipeComplete)
+            {
+                recipeComplete = true;
+                recipe.ExecutionProgress = 0;
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        p.PinHigh();
+
+                    }
+                }
+                StepDepay();
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        //Debug.Print($"{p.ID}-{p.Steps}\t");
+
+                        p.PinLow();
+                        p.Steps--;
+                        if (p.Steps > 0)
+                        {
+                            recipeComplete = false;
+                        }
+                    }
+                }
+                StepDepay();
+                step++;
+                recipe.ExecutionProgress = (int)(((float)step / (float)totalSteps) * 100);
+                //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
+            }
+        }
+
+        
+
+
+        static void StepDepay(long us = 600)
+        {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            long v = (us * System.Diagnostics.Stopwatch.Frequency) / 1000000;
+            while (sw.ElapsedTicks < v)
+            {
+            }
+        }
+
     }
 }
