@@ -36,6 +36,8 @@ namespace CocktailPi
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Cocktail.ExecuteRecipe(Item);
+
             GpioController gpio = GpioController.GetDefault();
             if (gpio == null)
                 return;

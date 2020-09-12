@@ -10,12 +10,11 @@
 
     <NavigationView x:Name="NavView"
                     PaneDisplayMode="LeftCompact"
-    ItemInvoked="NavView_ItemInvoked"
-                    IsBackEnabled="True"
+                    ItemInvoked="NavView_ItemInvoked"
+                    IsBackButtonVisible="Collapsed"
                     IsPaneToggleButtonVisible="False"
-                    IsBackButtonVisible="Auto"
                     BackRequested="NavView_BackRequested"
-    Loaded="NavView_Loaded">
+                    Loaded="NavView_Loaded">
 
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Home" Name="pageHome">
@@ -23,9 +22,6 @@
                     <FontIcon Glyph="&#xE10F;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <!--<NavigationViewItemSeparator/>-->
-            <!--<NavigationViewItem Name="pageBottles" Icon="AllApps" Content="Bottles" VerticalAlignment="Bottom"/>-->
-
         </NavigationView.MenuItems>
 
         <Frame x:Name="ContentFrame" Margin="12" x:FieldModifier="public">

@@ -15,6 +15,8 @@ namespace CocktailPi
             Qnty = int.Parse(node.GetAttribute("Qnty"));
         }
 
+        #region Properties 
+
         public string Name { get; set; } = "";
 
         public int Qnty { get; set; } = 1;
@@ -30,5 +32,6 @@ namespace CocktailPi
             }
         }
 
+        #endregion
     }
 }

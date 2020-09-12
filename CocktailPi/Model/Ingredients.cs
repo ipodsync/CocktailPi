@@ -12,17 +12,24 @@ namespace CocktailPi
 
         public void Load()
         {
+            List<string> ingredients = new List<string>();
+
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"Data\Ingredients.xml");
-            //ResourceLoader.GetForCurrentView()
-            //ResourceMap resourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
-            //string XML = resourceMap.GetValue("Recipes").ValueAsString;
-            //var resources = new Windows.ApplicationModel.Resources.ResourceLoader("Resources.resw");
-            //doc.LoadXml(resources.GetString("recipes"));
+            doc.Load(@"Data\Recipes.xml");
+
             foreach (XmlElement node in doc.SelectNodes("//Ingredient"))
             {
-                Ingredient ingredient = new Ingredient(node);
-                Add(ingredient);
+                string ingredient = node.GetAttribute("Name");
+                if (!ingredients.Contains(ingredient))
+                    ingredients.Add(ingredient);
+            }
+
+            ingredients.Sort();
+            foreach (string ingredient in ingredients)
+            {
+                Ingredient ing = new Ingredient(ingredient);
+                Add(ing);
+
             }
         }
     }

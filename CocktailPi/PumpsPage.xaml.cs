@@ -30,6 +30,12 @@ namespace CocktailPi
             
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Cocktail.Pumps.SaveConfiguration();
+        }
+
         public Pumps Items { get; set; }
 
         private void listItemClicked(object sender, ItemClickEventArgs e)

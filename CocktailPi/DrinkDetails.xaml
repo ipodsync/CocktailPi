@@ -50,7 +50,7 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="local:Ingredient">
-                                <TextBlock Text="{x:Bind Caption}" FontSize="16"/>
+                                <TextBlock Text="{x:Bind Caption}" FontSize="16" Foreground="{x:Bind LabelColor}" FontWeight="{x:Bind CaptionFontWeight}"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -93,6 +93,13 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <Button Content="{x:Bind Item.ExecuteCaption}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" Click="Button_Click"/>
+        <ProgressBar Grid.Column="1" Grid.Row="1"
+                     VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" Height="10" Visibility="Visible"
+                     Value="{x:Bind Item.ExecutionProgress}"
+                     />
+        <Button Content="{x:Bind Item.ExecuteCaption}" Grid.Column="1" Grid.Row="1" Name="cmdExecute"
+                VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" FontSize="16" FontWeight="Bold"
+                Click="Button_Click" IsEnabled="{x:Bind Item.CanMakeRecipe}"
+                />
     </Grid>
 </Page>

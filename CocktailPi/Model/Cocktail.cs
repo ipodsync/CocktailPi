@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Activation;
 using Windows.Devices.Gpio;
 
 namespace CocktailPi
@@ -11,12 +13,16 @@ namespace CocktailPi
     {
         const int STEPS_PER_ROTATION = 200;
         const int ROTATIONS_PER_OUNCE = 130;
+        const int STEPS_PER_OUNCE = STEPS_PER_ROTATION * ROTATIONS_PER_OUNCE;
+
         const int PIN_ENABLE = 7;
         const int PIN_DIRECTION = 8;
 
         static GpioController gpio;
         static GpioPin pinEnable;
         static GpioPin pinDirection;
+
+        #region Hardware
 
         internal static void SetPumpDirectionOut()
         {
@@ -37,7 +43,75 @@ namespace CocktailPi
         {
             pinEnable?.Write(GpioPinValue.Low);
         }
-        
+
+
+        public static async void ExecuteRecipe(Recipe recipe)
+        {
+            LoadRecipeOntoPumps(recipe);
+            Pumps.DebugPumpUsage();
+
+            SetPumpDirectionOut();
+            EnableMotorDrivers();
+
+            bool recipeComplete = false;
+            int step = 0;
+            int totalSteps = Pumps.MaxSteps;
+            int percent = 0;
+            int newPercent = 0;
+            recipe.ExecutionProgress = 0;
+
+            while (!recipeComplete)
+            {
+                recipeComplete = true;
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        p.PinHigh();
+
+                    }
+                }
+                StepDelay();
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        //Debug.Print($"{p.ID}-{p.Steps}\t");
+
+                        p.PinLow();
+                        p.Steps--;
+                        if (p.Steps > 0)
+                        {
+                            recipeComplete = false;
+                        }
+                    }
+                }
+                StepDelay();
+                step++;
+
+                newPercent = (int)(((float)step / (float)totalSteps) * 100);
+                if (newPercent != percent)
+                {
+                    percent = newPercent;
+                    recipe.ExecutionProgress = percent;
+                }
+
+                //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
+
+            }
+            DisableMotorDrivers();
+        }
+
+        static void StepDelay(long us = 600)
+        {
+            var sw = Stopwatch.StartNew();
+            long v = (us * Stopwatch.Frequency) / 1000000;
+            while (sw.ElapsedTicks < v)
+            {
+            }
+        }
+
+        #endregion
 
         public static Recipes Recipes { get; private set; }
 
@@ -55,7 +129,7 @@ namespace CocktailPi
             Recipes = new Recipes();
             Recipes.Load();
 
-            
+
             gpio = GpioController.GetDefault();
             if (gpio != null)
             {
@@ -72,27 +146,29 @@ namespace CocktailPi
 
             Pumps = new Pumps();
 
-            AddPump(1, "Bourbon", 10);
-            AddPump(2, "Compari", 11);
-            AddPump(3, "Rye", 12);
-            AddPump(4, "Gin", 13);
-            AddPump(5, "Aperol", 14);
-            AddPump(6, "Scotch", 15);
-            AddPump(7, "Drambuie", 16);
-            AddPump(8, "", 17);
-            AddPump(9, "", 18);
-            AddPump(10, "", 19);
-            AddPump(11, "", 21);
-            AddPump(12, "", 22);
+            AddPump("A1", "Bourbon", 10);
+            AddPump("A2", "Campari", 11);
+            AddPump("A3", "Rye", 12);
+            AddPump("A4", "Gin", 13);
+            AddPump("B1", "Aperol", 14);
+            AddPump("B2", "Scotch", 15);
+            AddPump("B3", "Drambuie", 16);
+            AddPump("B4", "", 17);
+            AddPump("C1", "", 18);
+            AddPump("C2", "", 19);
+            AddPump("C3", "", 21);
+            AddPump("C4", "", 22);
+
+            Pumps.LoadConfiguration();
 
             #endregion
         }
 
-        static Pump AddPump(int number, string ingredient, int pinNumber)
+        static Pump AddPump(string ID, string ingredientName, int pinNumber)
         {
             Pump pump = new Pump();
-            pump.Number = number;
-            pump.Ingredient = ingredient;
+            pump.ID = ID;
+            pump.Ingredient = ingredientName;
 
             if (gpio != null)
             {
@@ -105,5 +181,30 @@ namespace CocktailPi
             Pumps.Add(pump);
             return pump;
         }
+
+        static public void LoadRecipeOntoPumps(Recipe recipe)
+        {
+            foreach (Pump p in Pumps)
+            {
+                p.Steps = 0;
+            }
+
+            foreach (Ingredient i in recipe.Ingredients)
+            {
+                Pump p = FindIngredientPump(i.Name);
+                p.Steps = (int)((float)STEPS_PER_OUNCE * i.Qnty);
+            }
+        }
+
+        static public Pump FindIngredientPump(string ingredient)
+        {
+            foreach (Pump p in Pumps)
+            {
+                if (p.Ingredient.Equals(ingredient))
+                    return p;
+            }
+            return null;
+        }
+
     }
 }

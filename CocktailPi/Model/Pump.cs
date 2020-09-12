@@ -5,18 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
+using Windows.Storage;
 
 namespace CocktailPi
 {
     public class Pump
     {
-        public int Number { get; set; } = 0;
+        #region Properties 
 
-        public string Title { get => $"Pump {Number:00}"; }
+        public string ID { get; set; } = "";
+
+        public string Title { get => $"Pump {ID:00}"; }
 
         public string Ingredient { get; set; } = "";
 
         public GpioPin Pin { get; set; } = null;
+
+        public int Steps { get; set; } = 0;
+
+        #endregion
+
+        #region Hardware
 
         internal void StartPrime()
         {
@@ -48,5 +57,35 @@ namespace CocktailPi
             Cocktail.DisableMotorDrivers();
         }
 
+        public void PinHigh()
+        {
+            Pin?.Write(GpioPinValue.High);
+        }
+
+        public void PinLow()
+        {
+            Pin?.Write(GpioPinValue.Low);
+        }
+
+        #endregion
+
+        #region Persistance 
+
+        public void SaveConfiguration()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values[$"{ID}.Ingredient"] = Ingredient;
+        }
+
+        public void LoadConfiguration()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.ContainsKey($"{ID}.Ingredient"))
+            {
+                Ingredient = localSettings.Values[$"{ID}.Ingredient"] as string;
+            }
+        }
+
+        #endregion
     }
 }
