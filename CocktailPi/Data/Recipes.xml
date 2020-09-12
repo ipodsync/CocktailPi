@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Recipes>
+
+  <Recipe Name="Scotch on the Rocks" Description="In the bar, the term `rocks` refers to ice. When someone orders a `scotch on the rocks,` they are asking for a straight pour of the house scotch served over ice."
+        Image="Drink_Scotch.jpg">
+    <Ingredient Name="Scotch" Qnty="1.25"/>
+  </Recipe>
   
   <Recipe Name="Boulevardier (Rye)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
           Image="Drink_Boulevardier.jpg">

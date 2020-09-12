@@ -175,6 +175,7 @@
     <Content Include="Assets\Drink_Manhattan.jpg" />
     <Content Include="Assets\Drink_Negroni.jpg" />
     <Content Include="Assets\Drink_RustyNail.jpg" />
+    <Content Include="Assets\Drink_Scotch.jpg" />
     <Content Include="Data\Ingredients.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
