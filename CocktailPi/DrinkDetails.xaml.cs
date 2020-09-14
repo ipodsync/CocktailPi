@@ -37,6 +37,7 @@ namespace CocktailPi
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Cocktail.ExecuteRecipe(Item);
+            return;
 
             GpioController gpio = GpioController.GetDefault();
             if (gpio == null)
@@ -45,20 +46,39 @@ namespace CocktailPi
             int sleep = 1;
 
             // Open GPIO 5
-            using (GpioPin pinStep = gpio.OpenPin(3)) 
-            using (GpioPin pinDir = gpio.OpenPin(4))
+            Cocktail.EnableMotorDrivers();
+            Cocktail.SetPumpDirectionOut();
+
+            using (GpioPin pinStep1 = gpio.OpenPin(17))
+            using (GpioPin pinStep2 = gpio.OpenPin(27))
+            using (GpioPin pinStep3 = gpio.OpenPin(22)) 
             {
                 // Latch HIGH value first. This ensures a default value when the pin is set as output
-                pinStep.Write(GpioPinValue.High);
-                pinStep.SetDriveMode(GpioPinDriveMode.Output);
+                pinStep1.Write(GpioPinValue.High);
+                pinStep1.SetDriveMode(GpioPinDriveMode.Output);
 
-                pinDir.Write(GpioPinValue.Low);
-                pinDir.SetDriveMode(GpioPinDriveMode.Output);
-                pinDir.Write(GpioPinValue.High);
+                pinStep2.Write(GpioPinValue.High);
+                pinStep2.SetDriveMode(GpioPinDriveMode.Output);
+
+                pinStep3.Write(GpioPinValue.High);
+                pinStep3.SetDriveMode(GpioPinDriveMode.Output);
+
 
                 for (int x=0; x<200 * 130; x++)
                 {
-                    StepperStepOne(pinStep);
+                    //StepperStepOne(pinStep1);
+                    //StepperStepOne(pinStep2);
+                    //StepperStepOne(pinStep3);
+
+                    pinStep1.Write(GpioPinValue.High);
+                    pinStep2.Write(GpioPinValue.High);
+                    pinStep3.Write(GpioPinValue.High);
+                    udelay();
+
+                    pinStep1.Write(GpioPinValue.Low);
+                    pinStep2.Write(GpioPinValue.Low);
+                    pinStep3.Write(GpioPinValue.Low);
+                    udelay();
                     //pinStep.Write(GpioPinValue.High);
                     //Thread.Sleep(sleep);
                     //pinStep.Write(GpioPinValue.Low);
@@ -76,24 +96,19 @@ namespace CocktailPi
                 //}
 
             }
+            Cocktail.DisableMotorDrivers();
         }
 
         void StepperStepOne (GpioPin pinStep)
         {
-            double speed = 1;
-            //var signal = Task.Run(async delegate { await Task.Delay(TimeSpan.FromMilliseconds(speed)); });
-            //var pavza = Task.Run(async delegate { await Task.Delay(TimeSpan.FromMilliseconds(speed)); });
             pinStep.Write(GpioPinValue.High);
-            //signal.Wait();
-            //Task.Delay(-1).Wait(1);
-            udelay(600);
+            udelay();
+
             pinStep.Write(GpioPinValue.Low);
-            udelay(600);
-            //Task.Delay(-1).Wait(1);
-            //pavza.Wait();
+            udelay();
         }
 
-        static void udelay(long us)
+        static void udelay(long us = 700)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
             long v = (us * System.Diagnostics.Stopwatch.Frequency) / 1000000;

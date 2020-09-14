@@ -59,12 +59,12 @@ namespace CocktailPi
 
         public void PinHigh()
         {
-            Pin?.Write(GpioPinValue.High);
+            Pin.Write(GpioPinValue.High);
         }
 
         public void PinLow()
         {
-            Pin?.Write(GpioPinValue.Low);
+            Pin.Write(GpioPinValue.Low);
         }
 
         #endregion

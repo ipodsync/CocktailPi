@@ -15,8 +15,8 @@ namespace CocktailPi
         const int ROTATIONS_PER_OUNCE = 130;
         const int STEPS_PER_OUNCE = STEPS_PER_ROTATION * ROTATIONS_PER_OUNCE;
 
-        const int PIN_ENABLE = 7;
-        const int PIN_DIRECTION = 8;
+        public const int PIN_ENABLE = 19;
+        public const int PIN_DIRECTION = 26;
 
         static GpioController gpio;
         static GpioPin pinEnable;
@@ -36,12 +36,12 @@ namespace CocktailPi
 
         internal static void EnableMotorDrivers()
         {
-            pinEnable?.Write(GpioPinValue.High);
+            pinEnable?.Write(GpioPinValue.Low);
         }
 
         internal static void DisableMotorDrivers()
         {
-            pinEnable?.Write(GpioPinValue.Low);
+            pinEnable?.Write(GpioPinValue.High);
         }
 
 
@@ -135,29 +135,45 @@ namespace CocktailPi
             {
                 pinEnable = gpio.OpenPin(PIN_ENABLE);
                 pinEnable.Write(GpioPinValue.High);
-                pinEnable.SetDriveMode(GpioPinDriveMode.InputPullDown);
+                pinEnable.SetDriveMode(GpioPinDriveMode.Output);
+
+                EnableMotorDrivers();
+                DisableMotorDrivers();
 
                 pinDirection = gpio.OpenPin(PIN_DIRECTION);
                 pinDirection.Write(GpioPinValue.Low);
-                pinDirection.SetDriveMode(GpioPinDriveMode.InputPullDown);
+                pinDirection.SetDriveMode(GpioPinDriveMode.Output);
+
+                SetPumpDirectionIn();
+                SetPumpDirectionOut();
+
+                //using (GpioPin pinStep = gpio.OpenPin(19))
+                //{
+                //    Latch HIGH value first. This ensures a default value when the pin is set as output
+                //    pinStep.Write(GpioPinValue.High);
+                //    pinStep.SetDriveMode(GpioPinDriveMode.Output);
+
+                //    pinStep.Write(GpioPinValue.High);
+                //    pinStep.Write(GpioPinValue.Low);
+                //}
             }
 
             #region Pumps
 
             Pumps = new Pumps();
 
-            AddPump("A1", "Bourbon", 10);
-            AddPump("A2", "Campari", 11);
-            AddPump("A3", "Rye", 12);
-            AddPump("A4", "Gin", 13);
-            AddPump("B1", "Aperol", 14);
-            AddPump("B2", "Scotch", 15);
-            AddPump("B3", "Drambuie", 16);
-            AddPump("B4", "", 17);
-            AddPump("C1", "", 18);
-            AddPump("C2", "", 19);
-            AddPump("C3", "", 21);
-            AddPump("C4", "", 22);
+            AddPump("A1", "", 17);
+            AddPump("A2", "", 27);
+            AddPump("A3", "", 22);
+            AddPump("A4", "", 0);
+            AddPump("B1", "", 0);
+            AddPump("B2", "", 0);
+            AddPump("B3", "", 0);
+            AddPump("B4", "", 0);
+            AddPump("C1", "", 0);
+            AddPump("C2", "", 0);
+            AddPump("C3", "", 0);
+            AddPump("C4", "", 0);
 
             Pumps.LoadConfiguration();
 
@@ -170,11 +186,11 @@ namespace CocktailPi
             pump.ID = ID;
             pump.Ingredient = ingredientName;
 
-            if (gpio != null)
+            if (gpio != null && pinNumber > 0)
             {
                 GpioPin pin = gpio.OpenPin(pinNumber);
                 pin.Write(GpioPinValue.High);
-                pin.SetDriveMode(GpioPinDriveMode.InputPullDown);
+                pin.SetDriveMode(GpioPinDriveMode.Output);
                 pump.Pin = pin;
             }
 
