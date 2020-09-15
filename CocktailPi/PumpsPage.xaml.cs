@@ -48,32 +48,71 @@ namespace CocktailPi
             //detailPage.Item = (Recipe)e.ClickedItem;
         }
 
-        private void OnStartPrime(object sender, PointerRoutedEventArgs e)
+
+        private void cmdRecover_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock ctl = e.OriginalSource as TextBlock;
-            Pump pump = ctl?.DataContext as Pump;
-            pump?.StartPrime();           
+            Button button = sender as Button;
+            Pump pump = button?.DataContext as Pump;
+            if (pump != null)
+            {
+                if (!pump.IsRecovering)
+                {
+                    pump.StopPrime();
+                    pump.StartRecover();
+                }
+                else pump.StopRecover();
+                button.Content = pump.CaptionRecoverButton;
+
+            }
         }
 
-        private void OnStopPrime(object sender, PointerRoutedEventArgs e)
+        private void cmdPrime_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock ctl = e.OriginalSource as TextBlock;
-            Pump pump = ctl?.DataContext as Pump;
-            pump?.StopPrime();
+            Button button = sender as Button;
+            Pump pump = button?.DataContext as Pump;
+            if (pump != null)
+            {
+                if (!pump.IsPriming)
+                {
+                    pump.StopRecover();
+                    pump.StartPrime();
+                }
+                else pump.StopPrime();
+                button.Content = pump.CaptionPrimeButton;
+            }
         }
 
-        private void OnStartRecover(object sender, PointerRoutedEventArgs e)
-        {
-            TextBlock ctl = e.OriginalSource as TextBlock;
-            Pump pump = ctl?.DataContext as Pump;
-            pump?.StartRecover();
-        }
+        //private void OnStartPrime(object sender, PointerRoutedEventArgs e)
+        //{
+        //    TextBlock ctl = e.OriginalSource as TextBlock;
+        //    Pump pump = ctl?.DataContext as Pump;
+        //    pump?.StartPrime();           
+        //}
 
-        private void OnStopRecover(object sender, PointerRoutedEventArgs e)
-        {
-            TextBlock ctl = e.OriginalSource as TextBlock;
-            Pump pump = ctl?.DataContext as Pump;
-            pump?.StopRecover();
-        }
+        //private void OnStopPrime(object sender, PointerRoutedEventArgs e)
+        //{
+        //    TextBlock ctl = e.OriginalSource as TextBlock;
+        //    Pump pump = ctl?.DataContext as Pump;
+        //    pump?.StopPrime();
+        //}
+
+        //private void OnStartRecover(object sender, PointerRoutedEventArgs e)
+        //{
+        //    TextBlock ctl = e.OriginalSource as TextBlock;
+        //    Pump pump = ctl?.DataContext as Pump;
+        //    pump?.StartRecover();
+        //}
+
+        //private void OnStopRecover(object sender, PointerRoutedEventArgs e)
+        //{
+        //    TextBlock ctl = e.OriginalSource as TextBlock;
+        //    Pump pump = ctl?.DataContext as Pump;
+        //    pump?.StopRecover();
+        //}
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
     }
 }

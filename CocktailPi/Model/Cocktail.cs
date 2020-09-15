@@ -42,6 +42,10 @@ namespace CocktailPi
         internal static void DisableMotorDrivers()
         {
             pinEnable?.Write(GpioPinValue.High);
+            foreach (Pump p in Pumps)
+            {
+                p.Stop();
+            }
         }
 
 
@@ -123,6 +127,8 @@ namespace CocktailPi
 
         public static void Init()
         {
+            Pumps = new Pumps();
+
             Ingredients = new Ingredients();
             Ingredients.Load();
 
@@ -146,21 +152,9 @@ namespace CocktailPi
 
                 SetPumpDirectionIn();
                 SetPumpDirectionOut();
-
-                //using (GpioPin pinStep = gpio.OpenPin(19))
-                //{
-                //    Latch HIGH value first. This ensures a default value when the pin is set as output
-                //    pinStep.Write(GpioPinValue.High);
-                //    pinStep.SetDriveMode(GpioPinDriveMode.Output);
-
-                //    pinStep.Write(GpioPinValue.High);
-                //    pinStep.Write(GpioPinValue.Low);
-                //}
             }
 
             #region Pumps
-
-            Pumps = new Pumps();
 
             AddPump("A1", "", 17);
             AddPump("A2", "", 27);
@@ -178,6 +172,9 @@ namespace CocktailPi
             Pumps.LoadConfiguration();
 
             #endregion
+
+            Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.High);
+
         }
 
         static Pump AddPump(string ID, string ingredientName, int pinNumber)
@@ -222,5 +219,30 @@ namespace CocktailPi
             return null;
         }
 
+
+        static private void StepTicThread(Windows.Foundation.IAsyncAction action)
+        {
+            //This thread runs on a high priority task and loops forever
+            while (true)
+            {
+                foreach (Pump p in Pumps)
+                {
+                    if (p.DoStep)
+                    {
+                        p.PinHigh();
+                    }
+                }
+                StepDelay(600);
+
+                foreach (Pump p in Pumps)
+                {
+                    if (p.DoStep)
+                    {
+                        p.PinLow();
+                    }
+                }
+                StepDelay(600);
+            }
+        }
     }
 }
