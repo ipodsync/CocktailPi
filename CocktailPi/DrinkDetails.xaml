@@ -94,7 +94,7 @@
             </Grid>
         </StackPanel>
         <ProgressBar Grid.Column="1" Grid.Row="1"
-                     VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" Height="10" Visibility="Visible"
+                     VerticalAlignment="Bottom" Margin="0,12,12,12" HorizontalAlignment="Stretch" Height="10" Visibility="Collapsed"
                      Value="{x:Bind Item.ExecutionProgress}"
                      />
         <Button Content="{x:Bind Item.ExecuteCaption}" Grid.Column="1" Grid.Row="1" Name="cmdExecute"

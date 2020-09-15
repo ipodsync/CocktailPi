@@ -82,37 +82,5 @@ namespace CocktailPi
             }
         }
 
-        //private void OnStartPrime(object sender, PointerRoutedEventArgs e)
-        //{
-        //    TextBlock ctl = e.OriginalSource as TextBlock;
-        //    Pump pump = ctl?.DataContext as Pump;
-        //    pump?.StartPrime();           
-        //}
-
-        //private void OnStopPrime(object sender, PointerRoutedEventArgs e)
-        //{
-        //    TextBlock ctl = e.OriginalSource as TextBlock;
-        //    Pump pump = ctl?.DataContext as Pump;
-        //    pump?.StopPrime();
-        //}
-
-        //private void OnStartRecover(object sender, PointerRoutedEventArgs e)
-        //{
-        //    TextBlock ctl = e.OriginalSource as TextBlock;
-        //    Pump pump = ctl?.DataContext as Pump;
-        //    pump?.StartRecover();
-        //}
-
-        //private void OnStopRecover(object sender, PointerRoutedEventArgs e)
-        //{
-        //    TextBlock ctl = e.OriginalSource as TextBlock;
-        //    Pump pump = ctl?.DataContext as Pump;
-        //    pump?.StopRecover();
-        //}
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
     }
 }
