@@ -173,7 +173,7 @@ namespace CocktailPi
 
             #endregion
 
-            Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.High);
+            _ = Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.Normal);
 
         }
 
