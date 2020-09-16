@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Devices.Gpio;
+using Windows.UI.Xaml.Controls;
 
 namespace CocktailPi
 {
@@ -34,14 +35,20 @@ namespace CocktailPi
             pinDirection?.Write(GpioPinValue.Low);
         }
 
+        internal static bool IsDriverEnabled { get; private set; } = false;
+
         internal static void EnableMotorDrivers()
         {
+            Debug.Print("EnableMotorDrivers\r\n");
             pinEnable?.Write(GpioPinValue.Low);
+            IsDriverEnabled = true;
         }
 
         internal static void DisableMotorDrivers()
         {
+            Debug.Print("DisableMotorDrivers\r\n");
             pinEnable?.Write(GpioPinValue.High);
+            IsDriverEnabled = false;
             foreach (Pump p in Pumps)
             {
                 p.Stop();
@@ -49,62 +56,6 @@ namespace CocktailPi
         }
 
 
-        public static async void ExecuteRecipe(Recipe recipe)
-        {
-            LoadRecipeOntoPumps(recipe);
-            Pumps.DebugPumpUsage();
-
-            SetPumpDirectionOut();
-            EnableMotorDrivers();
-
-            bool recipeComplete = false;
-            int step = 0;
-            int totalSteps = Pumps.MaxSteps;
-            int percent = 0;
-            int newPercent = 0;
-            recipe.ExecutionProgress = 0;
-
-            while (!recipeComplete)
-            {
-                recipeComplete = true;
-                foreach (Pump p in Pumps)
-                {
-                    if (p.Steps > 0)
-                    {
-                        p.PinHigh();
-
-                    }
-                }
-                StepDelay();
-                foreach (Pump p in Pumps)
-                {
-                    if (p.Steps > 0)
-                    {
-                        //Debug.Print($"{p.ID}-{p.Steps}\t");
-
-                        p.PinLow();
-                        p.Steps--;
-                        if (p.Steps > 0)
-                        {
-                            recipeComplete = false;
-                        }
-                    }
-                }
-                StepDelay();
-                step++;
-
-                newPercent = (int)(((float)step / (float)totalSteps) * 100);
-                if (newPercent != percent)
-                {
-                    percent = newPercent;
-                    recipe.ExecutionProgress = percent;
-                }
-
-                //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
-
-            }
-            DisableMotorDrivers();
-        }
 
         static void StepDelay(long us = 600)
         {
@@ -123,7 +74,7 @@ namespace CocktailPi
 
         public static Ingredients Ingredients { get; private set; }
 
-
+        public static ProgressBar ProgressBar { get; set; }
 
         public static void Init()
         {
@@ -142,9 +93,6 @@ namespace CocktailPi
                 pinEnable = gpio.OpenPin(PIN_ENABLE);
                 pinEnable.Write(GpioPinValue.High);
                 pinEnable.SetDriveMode(GpioPinDriveMode.Output);
-
-                EnableMotorDrivers();
-                DisableMotorDrivers();
 
                 pinDirection = gpio.OpenPin(PIN_DIRECTION);
                 pinDirection.Write(GpioPinValue.Low);
@@ -225,24 +173,104 @@ namespace CocktailPi
             //This thread runs on a high priority task and loops forever
             while (true)
             {
-                foreach (Pump p in Pumps)
+                bool workPerformed = false;
+                if (IsDriverEnabled)
                 {
-                    if (p.DoStep)
+                    foreach (Pump p in Pumps)
                     {
-                        p.PinHigh();
+                        if (p.DoStep)
+                        {
+                            p.PinHigh();
+                        }
                     }
-                }
-                StepDelay(600);
+                    StepDelay();
 
-                foreach (Pump p in Pumps)
-                {
-                    if (p.DoStep)
+                    foreach (Pump p in Pumps)
                     {
-                        p.PinLow();
+                        if (p.DoStep)
+                        {
+                            p.PinLow();
+                            p.Steps--;
+                            workPerformed = true;
+                        }
+                    }
+                    StepDelay();
+
+                    //if (ProgressBar != null && ProgressBar.Value < ProgressBar.Maximum)
+                    //{
+                    //    ProgressBar.Value++;
+                    //}
+
+                    if (!workPerformed)
+                    {
+                        DisableMotorDrivers();
                     }
                 }
-                StepDelay(600);
             }
         }
+
+        public static async Task ExecuteRecipe(Recipe recipe)
+        {
+            LoadRecipeOntoPumps(recipe);
+            Pumps.DebugPumpUsage();
+            SetPumpDirectionOut();
+
+            ProgressBar.Maximum = Pumps.MaxSteps;
+            ProgressBar.Value = 0;
+
+            EnableMotorDrivers();
+            //_ = Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.Normal);
+
+
+            //bool recipeComplete = false;
+            //int step = 0;
+            //int totalSteps = Pumps.MaxSteps;
+            //int percent = 0;
+            //int newPercent = 0;
+            //recipe.ExecutionProgress = 0;
+
+            //while (!recipeComplete)
+            //{
+            //    recipeComplete = true;
+            //    foreach (Pump p in Pumps)
+            //    {
+            //        if (p.Steps > 0)
+            //        {
+            //            p.PinHigh();
+
+            //        }
+            //    }
+            //    StepDelay();
+            //    foreach (Pump p in Pumps)
+            //    {
+            //        if (p.Steps > 0)
+            //        {
+            //            //Debug.Print($"{p.ID}-{p.Steps}\t");
+
+            //            p.PinLow();
+            //            p.Steps--;
+            //            if (p.Steps > 0)
+            //            {
+            //                recipeComplete = false;
+            //            }
+            //        }
+            //    }
+            //    StepDelay();
+            //    step++;
+
+            //    newPercent = (int)(((float)step / (float)totalSteps) * 100);
+            //    if (newPercent != percent)
+            //    {
+            //        percent = newPercent;
+            //        ProgressBar.Value = percent;
+            //    }
+
+            //    //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
+
+            //}
+            //ProgressBar.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            //DisableMotorDrivers();
+        }
+
     }
 }

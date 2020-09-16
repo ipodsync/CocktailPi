@@ -10,7 +10,7 @@
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Rye" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="0.75"/>
-    <Ingredient Name="Sweet Vermouth" Qnty="1"/>  
+    <Ingredient Name="Sweet Vermouth" Qnty="0.75"/>  
   </Recipe>
   
   <Recipe Name="Boulevardier (Bourbon)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
@@ -20,6 +20,13 @@
     <Ingredient Name="Sweet Vermouth" Qnty="1"/>
   </Recipe>
 
+  <Recipe Name="Boulevardier (Bourbon + Aperol)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+        Image="Drink_Boulevardier.jpg">
+    <Ingredient Name="Bourbon" Qnty="1.25"/>
+    <Ingredient Name="Aperol" Qnty="1"/>
+    <Ingredient Name="Sweet Vermouth" Qnty="1"/>
+  </Recipe>
+  
   <Recipe Name="Bourbon Old Fashioned" Description="The old fashioned is a cocktail made by muddling sugar with bitters, adding whiskey or, less commonly, brandy, and garnishing with a twist of citrus rind and a cocktail cherry. It is traditionally served in an old fashioned glass, which predated the cocktail."
           Image="Drink_BourbonOldFashioned.jpg">
     <Ingredient Name="Bourbon" Qnty="2"/>

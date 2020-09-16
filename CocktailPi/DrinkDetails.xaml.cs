@@ -31,13 +31,12 @@ namespace CocktailPi
         public DrinkDetails()
         {
             this.InitializeComponent();
-            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Cocktail.ExecuteRecipe(Item);
-            Cocktail.DisableMotorDrivers();
+            Cocktail.ProgressBar = progress;
+            await Cocktail.ExecuteRecipe(Item);
         }
     }
 }
