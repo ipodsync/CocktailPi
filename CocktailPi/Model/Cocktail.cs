@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Devices.Gpio;
+using Windows.Media.Playback;
+using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
 namespace CocktailPi
@@ -16,12 +18,14 @@ namespace CocktailPi
         const int ROTATIONS_PER_OUNCE = 130;
         const int STEPS_PER_OUNCE = STEPS_PER_ROTATION * ROTATIONS_PER_OUNCE;
 
-        public const int PIN_ENABLE = 19;
-        public const int PIN_DIRECTION = 26;
+        public const int PIN_ENABLE = 18;
+        public const int PIN_DIRECTION = 23;
 
         static GpioController gpio;
         static GpioPin pinEnable;
         static GpioPin pinDirection;
+
+        static MediaPlayer player;
 
         #region Hardware
 
@@ -53,6 +57,7 @@ namespace CocktailPi
             {
                 p.Stop();
             }
+            player.Pause();
         }
 
 
@@ -76,7 +81,7 @@ namespace CocktailPi
 
         public static ProgressBar ProgressBar { get; set; }
 
-        public static void Init()
+        public static async Task InitAsync()
         {
             Pumps = new Pumps();
 
@@ -104,22 +109,29 @@ namespace CocktailPi
 
             #region Pumps
 
-            AddPump("A1", "", 17);
-            AddPump("A2", "", 27);
-            AddPump("A3", "", 22);
-            AddPump("A4", "", 0);
-            AddPump("B1", "", 0);
-            AddPump("B2", "", 0);
-            AddPump("B3", "", 0);
-            AddPump("B4", "", 0);
-            AddPump("C1", "", 0);
-            AddPump("C2", "", 0);
-            AddPump("C3", "", 0);
-            AddPump("C4", "", 0);
+            AddPump("A1", "", 4);
+            AddPump("A2", "", 17);
+            AddPump("A3", "", 27);
+            AddPump("A4", "", 22);
+
+            AddPump("B1", "", 10);
+            AddPump("B2", "", 9);
+            AddPump("B3", "", 11);
+            AddPump("B4", "", 5);
+
+            AddPump("C1", "", 6);
+            AddPump("C2", "", 13);
+            AddPump("C3", "", 19);
+            AddPump("C4", "", 16);
 
             Pumps.LoadConfiguration();
 
             #endregion
+
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/make.mp3"));
+            player = BackgroundMediaPlayer.Current;
+            player.AutoPlay = false;
+            player.SetFileSource(file);
 
             _ = Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.Normal);
 
@@ -211,6 +223,8 @@ namespace CocktailPi
 
         public static async Task ExecuteRecipe(Recipe recipe)
         {
+            player.Position = TimeSpan.Zero;
+            player.Play();
             LoadRecipeOntoPumps(recipe);
             Pumps.DebugPumpUsage();
             SetPumpDirectionOut();
@@ -219,57 +233,7 @@ namespace CocktailPi
             ProgressBar.Value = 0;
 
             EnableMotorDrivers();
-            //_ = Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.Normal);
-
-
-            //bool recipeComplete = false;
-            //int step = 0;
-            //int totalSteps = Pumps.MaxSteps;
-            //int percent = 0;
-            //int newPercent = 0;
-            //recipe.ExecutionProgress = 0;
-
-            //while (!recipeComplete)
-            //{
-            //    recipeComplete = true;
-            //    foreach (Pump p in Pumps)
-            //    {
-            //        if (p.Steps > 0)
-            //        {
-            //            p.PinHigh();
-
-            //        }
-            //    }
-            //    StepDelay();
-            //    foreach (Pump p in Pumps)
-            //    {
-            //        if (p.Steps > 0)
-            //        {
-            //            //Debug.Print($"{p.ID}-{p.Steps}\t");
-
-            //            p.PinLow();
-            //            p.Steps--;
-            //            if (p.Steps > 0)
-            //            {
-            //                recipeComplete = false;
-            //            }
-            //        }
-            //    }
-            //    StepDelay();
-            //    step++;
-
-            //    newPercent = (int)(((float)step / (float)totalSteps) * 100);
-            //    if (newPercent != percent)
-            //    {
-            //        percent = newPercent;
-            //        ProgressBar.Value = percent;
-            //    }
-
-            //    //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
-
-            //}
-            //ProgressBar.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            //DisableMotorDrivers();
+         
         }
 
     }

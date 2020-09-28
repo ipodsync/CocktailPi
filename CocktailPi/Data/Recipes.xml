@@ -36,7 +36,8 @@
     <Extra Name="Garnish: brandied cherry"/>
   </Recipe>
 
-  <Recipe Name="Manhattan (Bourbon)" Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
+  <Recipe Name="Manhattan (Bourbon)" 
+          Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
           Image="Drink_Manhattan.jpg">
     <Ingredient Name="Bourbon" Qnty="2"/>
     <Ingredient Name="Sweet Vermouth" Qnty="1"/>
