@@ -53,7 +53,7 @@ namespace CocktailPi
         {
             get
             {
-                return IsIngredientAvailable ? new SolidColorBrush(Windows.UI.Colors.Black) : new SolidColorBrush(Windows.UI.Colors.Red);
+                return IsIngredientAvailable ? new SolidColorBrush(Windows.UI.Colors.White) : new SolidColorBrush(Windows.UI.Colors.Red);
             }
         }
 
