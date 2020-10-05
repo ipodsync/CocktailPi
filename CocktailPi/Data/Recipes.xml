@@ -1,28 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Recipes>
 
-  <Recipe Name="Boulevardier (Rye)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+  <Recipe Name="Boulevardier (Rye)" 
+          Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Rye" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="0.75"/>
     <Ingredient Name="Red Vermouth" Qnty="0.75"/>  
   </Recipe>
   
-  <Recipe Name="Boulevardier (Bourbon)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+  <Recipe Name="Boulevardier (Bourbon)" 
+          Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="1"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
   </Recipe>
 
-  <Recipe Name="Boulevardier (Bourbon + Aperol)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+  <Recipe Name="Boulevardier (Bourbon + Aperol)" 
+          Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
         Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Aperol" Qnty="1"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
   </Recipe>
   
-  <Recipe Name="Bourbon Old Fashioned" Description="The old fashioned is a cocktail made by muddling sugar with bitters, adding whiskey or, less commonly, brandy, and garnishing with a twist of citrus rind and a cocktail cherry. It is traditionally served in an old fashioned glass, which predated the cocktail."
+  <Recipe Name="Bourbon Old Fashioned" 
+          Description="The old fashioned is a cocktail made by muddling sugar with bitters, adding whiskey or, less commonly, brandy, and garnishing with a twist of citrus rind and a cocktail cherry. It is traditionally served in an old fashioned glass, which predated the cocktail."
           Image="Drink_BourbonOldFashioned.jpg">
     <Ingredient Name="Bourbon" Qnty="2"/>
     <Dash Name="Angostura Bitters" Qnty="3"/>
@@ -41,7 +45,8 @@
     <Extra Name="Garnish: brandied cherry"/>
   </Recipe>
 
-  <Recipe Name="Manhattan (Rye)" Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
+  <Recipe Name="Manhattan (Rye)" 
+          Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
           Image="Drink_Manhattan.jpg">
     <Ingredient Name="Rye" Qnty="2.5"/>
     <Ingredient Name="Sweet Vermouth" Qnty="1"/>
@@ -51,14 +56,17 @@
   </Recipe>
 
   
-  <Recipe Name="Negroni" Description="The Negroni is a popular Italian cocktail, made of one part gin, one part vermouth rosso, and one part Campari, garnished with orange peel. It is considered an apéritif. A traditionally made Negroni is stirred, not shaken, and built over ice in an old-fashioned or rocks glass and garnished with a slice of orange."
+  <Recipe Name="Negroni" 
+          Description="The Negroni is a popular Italian cocktail, made of one part gin, one part vermouth rosso, and one part Campari, garnished with orange peel. It is considered an apéritif. A traditionally made Negroni is stirred, not shaken, and built over ice in an old-fashioned or rocks glass and garnished with a slice of orange."
           Image="Drink_Negroni.jpg">
     <Ingredient Name="Gin" Qnty="1"/>
     <Ingredient Name="Campari" Qnty="1"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
   </Recipe>
 
-  <Recipe Name="Paper Plane" Description="The Paper Plane is an IBA official cocktail. Developed around 2007 by Sasha Petraske and Sam Ross of Milk and Honey for their former colleague Toby Maloney's Chicago bar The Violet Hour, the recipe is a riff on the classic Last Word."
+  <Recipe Name="Paper Plane" 
+          Description="The Paper Plane is an IBA official cocktail. Developed around 2007 by Sasha Petraske and Sam Ross of Milk and Honey for their former colleague Toby Maloney's Chicago bar The Violet Hour, the recipe is a riff on the classic Last Word."
+          History="Invented in 2007 by Sam Ross, an award-winning bartender and the co-owner of Attaboy and Diamond Reef in New York City, the Paper Plane is a modern variation on the Last Word—this time made with equal parts bourbon, Amaro Nonino, Aperol and lemon juice. Supposedly inspired by M.I.A.'s smash hit “Paper Plane” (which was also released in 2007), the cocktail strikes a beautiful balance between bitter, sour and herbal notes."
           Image="Drink_PaperPlane.jpg">
     <Ingredient Name="Bourbon" Qnty="1"/>
     <Ingredient Name="Amaro Nonino" Qnty="1"/>
