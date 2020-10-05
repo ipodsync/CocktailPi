@@ -154,16 +154,20 @@
     <EmbeddedResource Include="Data\Recipes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Assets\Drink_Americano.jpg" />
     <Content Include="Assets\Drink_Boulevardier.jpg" />
     <Content Include="Assets\cocktail-glass.png" />
     <Content Include="Assets\Drink_BourbonOldFashioned.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Drink_HankyPanky.jpg" />
+    <Content Include="Assets\Drink_Martinez.jpg" />
     <Content Include="Assets\Drink_PaperPlane.jpg" />
     <Content Include="Assets\Drink_Manhattan.jpg" />
     <Content Include="Assets\Drink_Negroni.jpg" />
     <Content Include="Assets\Drink_RustyNail.jpg" />
     <Content Include="Assets\Drink_Scotch.jpg" />
+    <Content Include="Assets\Drink_WhiteLady.jpg" />
     <Content Include="Assets\make.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

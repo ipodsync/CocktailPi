@@ -1,30 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Recipes>
 
-  <Recipe Name="Scotch on the Rocks" Description="In the bar, the term `rocks` refers to ice. When someone orders a `scotch on the rocks,` they are asking for a straight pour of the house scotch served over ice."
-        Image="Drink_Scotch.jpg">
-    <Ingredient Name="Scotch" Qnty="1.25"/>
-  </Recipe>
-  
   <Recipe Name="Boulevardier (Rye)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Rye" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="0.75"/>
-    <Ingredient Name="Sweet Vermouth" Qnty="0.75"/>  
+    <Ingredient Name="Red Vermouth" Qnty="0.75"/>  
   </Recipe>
   
   <Recipe Name="Boulevardier (Bourbon)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="1"/>
-    <Ingredient Name="Sweet Vermouth" Qnty="1"/>
+    <Ingredient Name="Red Vermouth" Qnty="1"/>
   </Recipe>
 
   <Recipe Name="Boulevardier (Bourbon + Aperol)" Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
         Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Aperol" Qnty="1"/>
-    <Ingredient Name="Sweet Vermouth" Qnty="1"/>
+    <Ingredient Name="Red Vermouth" Qnty="1"/>
   </Recipe>
   
   <Recipe Name="Bourbon Old Fashioned" Description="The old fashioned is a cocktail made by muddling sugar with bitters, adding whiskey or, less commonly, brandy, and garnishing with a twist of citrus rind and a cocktail cherry. It is traditionally served in an old fashioned glass, which predated the cocktail."
@@ -39,8 +34,8 @@
   <Recipe Name="Manhattan (Bourbon)" 
           Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
           Image="Drink_Manhattan.jpg">
-    <Ingredient Name="Bourbon" Qnty="2"/>
-    <Ingredient Name="Sweet Vermouth" Qnty="1"/>
+    <Ingredient Name="Bourbon" Qnty="2.5"/>
+    <Ingredient Name="Red Vermouth" Qnty="1"/>
     <Dash Name="Angostura Bitters" Qnty="2"/>
     <Dash Name="Orange Bitters" Qnty="1"/>
     <Extra Name="Garnish: brandied cherry"/>
@@ -48,7 +43,7 @@
 
   <Recipe Name="Manhattan (Rye)" Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
           Image="Drink_Manhattan.jpg">
-    <Ingredient Name="Rye" Qnty="2"/>
+    <Ingredient Name="Rye" Qnty="2.5"/>
     <Ingredient Name="Sweet Vermouth" Qnty="1"/>
     <Dash Name="Angostura Bitters" Qnty="2"/>
     <Dash Name="Orange Bitters" Qnty="1"/>
@@ -60,7 +55,7 @@
           Image="Drink_Negroni.jpg">
     <Ingredient Name="Gin" Qnty="1"/>
     <Ingredient Name="Campari" Qnty="1"/>
-    <Ingredient Name="Sweet Vermouth" Qnty="1"/>
+    <Ingredient Name="Red Vermouth" Qnty="1"/>
   </Recipe>
 
   <Recipe Name="Paper Plane" Description="The Paper Plane is an IBA official cocktail. Developed around 2007 by Sasha Petraske and Sam Ross of Milk and Honey for their former colleague Toby Maloney's Chicago bar The Violet Hour, the recipe is a riff on the classic Last Word."
@@ -73,8 +68,42 @@
 
   <Recipe Name="Rusty Nail" Description="A Rusty Nail is made by mixing Drambuie and Scotch whisky. The drink was included in Difford's Guide's Top 100 Cocktails. A Rusty Nail can be served in an old-fashioned glass on the rocks, neat, or `up` in a stemmed glass. It is most commonly served over ice."
         Image="Drink_RustyNail.jpg">
-    <Ingredient Name="Scotch" Qnty="1.5"/>
-    <Ingredient Name="Drambuie" Qnty="0.75"/>
+    <Ingredient Name="Scotch" Qnty="1.25"/>
+    <Ingredient Name="Drambuie" Qnty="1"/>
   </Recipe>
-  
+
+  <Recipe Name="Rusty Bob" Description="A Rusty Bob is a variation of the Rusty Nail which substitutes Bourbon whisky for blended Scotch whisky.   A Rusty Bob can be served in an old-fashioned glass on the rocks, neat, or `up` in a stemmed glass. It is most commonly served over ice."
+      Image="Drink_RustyNail.jpg">
+    <Ingredient Name="Bourbon" Qnty="1.25"/>
+    <Ingredient Name="Drambuie" Qnty="1"/>
+  </Recipe>
+
+  <Recipe Name="Martinez" Description="The Martinez is a classic cocktail that is widely regarded as the direct precursor to the Martini.  It serves as the basis for many modern cocktails, and several different versions of the original exist. These are generally distinguished by the accompaniment of either Maraschino or Curacao, as well as differences in gin or bitters."
+    Image="Drink_Martinez.jpg">
+    <Ingredient Name="Gin" Qnty="1"/>
+    <Ingredient Name="Red Vermouth" Qnty="1"/>
+    <Dash Name="Orange Bitters" Qnty="2"/>
+    <Extra Name="1 bar spoon / tsp maraschino liqueur"/>
+  </Recipe>
+
+  <Recipe Name="Americano" Description="The Americano is an IBA official cocktail composed of Campari, sweet vermouth, and for the sparkling version, club soda and garnished with a slice of lemon.  The cocktail was first served in creator Gaspare Campari's bar, Caffè Campari, in the 1860s"
+  Image="Drink_Americano.jpg">
+    <Ingredient Name="Campari" Qnty="1"/>
+    <Ingredient Name="Red Vermouth" Qnty="1"/>
+    <Extra Name="Splash of Soda"/>
+  </Recipe>
+
+  <Recipe Name="Hanky Panky" Description="The Hanky-Panky is a variation on the sweet martini, inasmuch as it calls for gin and sweet vermouth, but Coley's secret ingredient was Fernet-Branca, a bitter Italian digestivo. By adding a couple of dashes of this herbal elixir, she transformed it into a whole new drink.  "
+  Image="Drink_HankyPanky.jpg">
+    <Ingredient Name="Campari" Qnty="1.5"/>
+    <Ingredient Name="Red Vermouth" Qnty="1.5"/>
+    <Dash Name="Fernet-Branca" Qnty="2"/>
+  </Recipe>
+
+  <Recipe Name="White Lady" Description="White Lady is a classic cocktail that was made with cointreau or Triple Sec, fresh lemon juice and an optional egg white.  It belongs to the sidecar family, made with gin in place of brandy. "
+  Image="Drink_WhiteLady.jpg">
+    <Ingredient Name="Gin" Qnty="2"/>
+    <Ingredient Name="Orange Liqueur" Qnty="1"/>
+    <Extra Name="1 shot lemon juice"/>
+  </Recipe>
 </Recipes>
