@@ -20,6 +20,7 @@ namespace CocktailPi
         {
             Name = node.GetAttribute("Name");
             Description = node.GetAttribute("Description");
+            History = node.GetAttribute("History");
 
             string imageFileName = node.GetAttribute("Image");
             if (!string.IsNullOrEmpty(imageFileName))
@@ -56,6 +57,8 @@ namespace CocktailPi
         public string Name { get; set; } = "";
 
         public string Description { get; set; } = "";
+
+        public string History { get; set; } = "";
 
         public bool ShowAddons
         {
