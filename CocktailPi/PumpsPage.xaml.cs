@@ -48,39 +48,32 @@ namespace CocktailPi
             //detailPage.Item = (Recipe)e.ClickedItem;
         }
 
-
-        private void cmdRecover_Click(object sender, RoutedEventArgs e)
+        private void OnStartPrime(object sender, PointerRoutedEventArgs e)
         {
-            Button button = sender as Button;
-            Pump pump = button?.DataContext as Pump;
-            if (pump != null)
-            {
-                if (!pump.IsRecovering)
-                {
-                    pump.StopPrime();
-                    pump.StartRecover();
-                }
-                else pump.StopRecover();
-                button.Content = pump.CaptionRecoverButton;
-
-            }
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StartPrime();           
         }
 
-        private void cmdPrime_Click(object sender, RoutedEventArgs e)
+        private void OnStopPrime(object sender, PointerRoutedEventArgs e)
         {
-            Button button = sender as Button;
-            Pump pump = button?.DataContext as Pump;
-            if (pump != null)
-            {
-                if (!pump.IsPriming)
-                {
-                    pump.StopRecover();
-                    pump.StartPrime();
-                }
-                else pump.StopPrime();
-                button.Content = pump.CaptionPrimeButton;
-            }
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StopPrime();
         }
 
+        private void OnStartRecover(object sender, PointerRoutedEventArgs e)
+        {
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StartRecover();
+        }
+
+        private void OnStopRecover(object sender, PointerRoutedEventArgs e)
+        {
+            TextBlock ctl = e.OriginalSource as TextBlock;
+            Pump pump = ctl?.DataContext as Pump;
+            pump?.StopRecover();
+        }
     }
 }

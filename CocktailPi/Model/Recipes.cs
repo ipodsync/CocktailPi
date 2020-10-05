@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Resources.Core;
 
@@ -23,7 +22,6 @@ namespace CocktailPi
                 Recipe recipe = new Recipe(node);
                 Add(recipe);
             }
-            Sort();
         }
     }
 }

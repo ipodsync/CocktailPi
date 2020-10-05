@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace CocktailPi
 {
-    public class Recipe : IComparable<Recipe>
+    public class Recipe
     {
 
         public Recipe(XmlElement node)
@@ -55,19 +55,6 @@ namespace CocktailPi
         #region Properties
 
         public string Name { get; set; } = "";
-
-        public string Caption
-        {
-            get
-            {
-                string caption = Name;
-                if (!CanMakeRecipe)
-                {
-                    caption += " (Missing Ingredient)";
-                }
-                return caption;
-            }
-        }
 
         public string Description { get; set; } = "";
 
@@ -122,16 +109,6 @@ namespace CocktailPi
                 _executionProgress = value;
                 Debug.Print($"Percent={ExecutionProgress}\r\n");
             }
-        }
-
-        public int CompareTo(Recipe other)
-        {
-            // A null value means that this object is greater.
-            if (other == null)
-                return 1;
-
-            else
-                return this.Name.CompareTo(other.Name);
         }
 
         #endregion

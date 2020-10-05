@@ -65,10 +65,6 @@ namespace CocktailPi
                     ContentFrame.Navigate(typeof(HomePage));
                     break;
 
-                case "eStop":
-                    Cocktail.DisableMotorDrivers();
-                    break;
-
                 case "pageBottles":
                     ContentFrame.Navigate(typeof(PumpsPage));
                     break;

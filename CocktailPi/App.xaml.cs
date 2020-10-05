@@ -34,7 +34,7 @@ namespace CocktailPi
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             //Cocktail = new Cocktail();
-            Cocktail.InitAsync();
+            Cocktail.Init();
         }
 
         /// <summary>

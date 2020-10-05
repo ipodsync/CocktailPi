@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="Black">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <ListView x:Name="DrinkList" ItemClick="listItemClicked" IsItemClickEnabled="True">
-            <ListView.ItemTemplate >
+            <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Recipe">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -22,15 +22,11 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Grid.RowSpan="2" Source="{x:Bind Image}" Width="64"
-                    Height="64" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
-                        <TextBlock 
-                            Grid.Column="1" Grid.Row="0" Text="{x:Bind Caption}" Margin="12,6,0,0" 
-                            Style="{ThemeResource BaseTextBlockStyle}" FontSize="18" Foreground="White"
-                            />
-                        <TextBlock  
-                            Grid.Column="1" Grid.Row="1" Text="{x:Bind Description}" Margin="12,0,0,6" 
-                            Style="{ThemeResource BodyTextBlockStyle}" Foreground="White"
-                            />
+                    Height="64" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                        <TextBlock Grid.Column="1" Text="{x:Bind Name}" Margin="12,6,0,0" 
+                    Style="{ThemeResource BaseTextBlockStyle}" FontSize="18"/>
+                        <TextBlock  Grid.Column="1" Grid.Row="1" Text="{x:Bind Description}" Margin="12,0,0,6" 
+                    Style="{ThemeResource BodyTextBlockStyle}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

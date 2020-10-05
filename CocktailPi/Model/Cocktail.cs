@@ -6,9 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Devices.Gpio;
-using Windows.Media.Playback;
-using Windows.Storage;
-using Windows.UI.Xaml.Controls;
 
 namespace CocktailPi
 {
@@ -18,14 +15,12 @@ namespace CocktailPi
         const int ROTATIONS_PER_OUNCE = 130;
         const int STEPS_PER_OUNCE = STEPS_PER_ROTATION * ROTATIONS_PER_OUNCE;
 
-        public const int PIN_ENABLE = 18;
-        public const int PIN_DIRECTION = 23;
+        const int PIN_ENABLE = 7;
+        const int PIN_DIRECTION = 8;
 
         static GpioController gpio;
         static GpioPin pinEnable;
         static GpioPin pinDirection;
-
-        static MediaPlayer player;
 
         #region Hardware
 
@@ -39,28 +34,73 @@ namespace CocktailPi
             pinDirection?.Write(GpioPinValue.Low);
         }
 
-        internal static bool IsDriverEnabled { get; private set; } = false;
-
         internal static void EnableMotorDrivers()
         {
-            Debug.Print("EnableMotorDrivers\r\n");
-            pinEnable?.Write(GpioPinValue.Low);
-            IsDriverEnabled = true;
+            pinEnable?.Write(GpioPinValue.High);
         }
 
         internal static void DisableMotorDrivers()
         {
-            Debug.Print("DisableMotorDrivers\r\n");
-            pinEnable?.Write(GpioPinValue.High);
-            IsDriverEnabled = false;
-            foreach (Pump p in Pumps)
-            {
-                p.Stop();
-            }
-            player.Pause();
+            pinEnable?.Write(GpioPinValue.Low);
         }
 
 
+        public static async void ExecuteRecipe(Recipe recipe)
+        {
+            LoadRecipeOntoPumps(recipe);
+            Pumps.DebugPumpUsage();
+
+            SetPumpDirectionOut();
+            EnableMotorDrivers();
+
+            bool recipeComplete = false;
+            int step = 0;
+            int totalSteps = Pumps.MaxSteps;
+            int percent = 0;
+            int newPercent = 0;
+            recipe.ExecutionProgress = 0;
+
+            while (!recipeComplete)
+            {
+                recipeComplete = true;
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        p.PinHigh();
+
+                    }
+                }
+                StepDelay();
+                foreach (Pump p in Pumps)
+                {
+                    if (p.Steps > 0)
+                    {
+                        //Debug.Print($"{p.ID}-{p.Steps}\t");
+
+                        p.PinLow();
+                        p.Steps--;
+                        if (p.Steps > 0)
+                        {
+                            recipeComplete = false;
+                        }
+                    }
+                }
+                StepDelay();
+                step++;
+
+                newPercent = (int)(((float)step / (float)totalSteps) * 100);
+                if (newPercent != percent)
+                {
+                    percent = newPercent;
+                    recipe.ExecutionProgress = percent;
+                }
+
+                //Debug.Print($" - {recipe.ExecutionProgress} percent\r\n");
+
+            }
+            DisableMotorDrivers();
+        }
 
         static void StepDelay(long us = 600)
         {
@@ -79,12 +119,10 @@ namespace CocktailPi
 
         public static Ingredients Ingredients { get; private set; }
 
-        public static ProgressBar ProgressBar { get; set; }
 
-        public static async Task InitAsync()
+
+        public static void Init()
         {
-            Pumps = new Pumps();
-
             Ingredients = new Ingredients();
             Ingredients.Load();
 
@@ -97,44 +135,33 @@ namespace CocktailPi
             {
                 pinEnable = gpio.OpenPin(PIN_ENABLE);
                 pinEnable.Write(GpioPinValue.High);
-                pinEnable.SetDriveMode(GpioPinDriveMode.Output);
+                pinEnable.SetDriveMode(GpioPinDriveMode.InputPullDown);
 
                 pinDirection = gpio.OpenPin(PIN_DIRECTION);
                 pinDirection.Write(GpioPinValue.Low);
-                pinDirection.SetDriveMode(GpioPinDriveMode.Output);
-
-                SetPumpDirectionIn();
-                SetPumpDirectionOut();
+                pinDirection.SetDriveMode(GpioPinDriveMode.InputPullDown);
             }
 
             #region Pumps
 
-            AddPump("A1", "", 4);
-            AddPump("A2", "", 17);
-            AddPump("A3", "", 27);
-            AddPump("A4", "", 22);
+            Pumps = new Pumps();
 
-            AddPump("B1", "", 10);
-            AddPump("B2", "", 9);
-            AddPump("B3", "", 11);
-            AddPump("B4", "", 5);
-
-            AddPump("C1", "", 6);
-            AddPump("C2", "", 13);
-            AddPump("C3", "", 19);
-            AddPump("C4", "", 16);
+            AddPump("A1", "Bourbon", 10);
+            AddPump("A2", "Campari", 11);
+            AddPump("A3", "Rye", 12);
+            AddPump("A4", "Gin", 13);
+            AddPump("B1", "Aperol", 14);
+            AddPump("B2", "Scotch", 15);
+            AddPump("B3", "Drambuie", 16);
+            AddPump("B4", "", 17);
+            AddPump("C1", "", 18);
+            AddPump("C2", "", 19);
+            AddPump("C3", "", 21);
+            AddPump("C4", "", 22);
 
             Pumps.LoadConfiguration();
 
             #endregion
-
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/make.mp3"));
-            player = BackgroundMediaPlayer.Current;
-            player.AutoPlay = false;
-            player.SetFileSource(file);
-
-            _ = Windows.System.Threading.ThreadPool.RunAsync(StepTicThread, Windows.System.Threading.WorkItemPriority.Normal);
-
         }
 
         static Pump AddPump(string ID, string ingredientName, int pinNumber)
@@ -143,11 +170,11 @@ namespace CocktailPi
             pump.ID = ID;
             pump.Ingredient = ingredientName;
 
-            if (gpio != null && pinNumber > 0)
+            if (gpio != null)
             {
                 GpioPin pin = gpio.OpenPin(pinNumber);
                 pin.Write(GpioPinValue.High);
-                pin.SetDriveMode(GpioPinDriveMode.Output);
+                pin.SetDriveMode(GpioPinDriveMode.InputPullDown);
                 pump.Pin = pin;
             }
 
@@ -177,63 +204,6 @@ namespace CocktailPi
                     return p;
             }
             return null;
-        }
-
-
-        static private void StepTicThread(Windows.Foundation.IAsyncAction action)
-        {
-            //This thread runs on a high priority task and loops forever
-            while (true)
-            {
-                bool workPerformed = false;
-                if (IsDriverEnabled)
-                {
-                    foreach (Pump p in Pumps)
-                    {
-                        if (p.DoStep)
-                        {
-                            p.PinHigh();
-                        }
-                    }
-                    StepDelay();
-
-                    foreach (Pump p in Pumps)
-                    {
-                        if (p.DoStep)
-                        {
-                            p.PinLow();
-                            p.Steps--;
-                            workPerformed = true;
-                        }
-                    }
-                    StepDelay();
-
-                    //if (ProgressBar != null && ProgressBar.Value < ProgressBar.Maximum)
-                    //{
-                    //    ProgressBar.Value++;
-                    //}
-
-                    if (!workPerformed)
-                    {
-                        DisableMotorDrivers();
-                    }
-                }
-            }
-        }
-
-        public static async Task ExecuteRecipe(Recipe recipe)
-        {
-            player.Position = TimeSpan.Zero;
-            player.Play();
-            LoadRecipeOntoPumps(recipe);
-            Pumps.DebugPumpUsage();
-            SetPumpDirectionOut();
-
-            ProgressBar.Maximum = Pumps.MaxSteps;
-            ProgressBar.Value = 0;
-
-            EnableMotorDrivers();
-         
         }
 
     }

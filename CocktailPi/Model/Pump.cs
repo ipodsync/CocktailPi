@@ -23,52 +23,37 @@ namespace CocktailPi
 
         public int Steps { get; set; } = 0;
 
-        public bool IsPriming { get; set; } = false;
-
-        public bool CanPrime { get => !IsRecovering; }
-
-        public bool IsRecovering { get; set;  } = false;
-
-        public bool DoStep { get => IsPriming || IsRecovering || Steps > 0; }
-
-        public bool CanRecover { get => !IsPriming; }
-
-        public string CaptionPrimeButton { get => IsPriming ? "Stop Prime" : "Start Prime"; }
-
-        public string CaptionRecoverButton { get => IsRecovering ? "Stop Recover" : "Start Recover"; }
-
         #endregion
 
         #region Hardware
 
         internal void StartPrime()
         {
-            Debug.Print("StartPrime\r\n");
+            Debug.Print("StartPrime");
 
             Cocktail.SetPumpDirectionOut();
             Cocktail.EnableMotorDrivers();
-            IsPriming = true;
         }
 
         internal void StopPrime()
         {
-            Debug.Print("StopPrime\r\n");
+            Debug.Print("StopPrime");
 
             Cocktail.DisableMotorDrivers();
         }
 
         internal void StartRecover()
         {
-            Debug.Print("StartRecover\r\n");
+            Debug.Print("StartRecover");
 
             Cocktail.SetPumpDirectionIn();
             Cocktail.EnableMotorDrivers();
-            IsRecovering = true;
         }
 
         internal void StopRecover()
         {
-            Debug.Print("StopRecover\r\n");
+            Debug.Print("StopRecover");
+
             Cocktail.DisableMotorDrivers();
         }
 
@@ -80,13 +65,6 @@ namespace CocktailPi
         public void PinLow()
         {
             Pin?.Write(GpioPinValue.Low);
-        }
-
-        public void Stop ()
-        {
-            IsPriming = false;
-            IsRecovering = false;
-            Steps = 0;
         }
 
         #endregion
