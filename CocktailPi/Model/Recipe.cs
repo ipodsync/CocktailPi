@@ -55,6 +55,19 @@ namespace CocktailPi
 
         public string Name { get; set; } = "";
 
+        public string Caption
+        {
+            get
+            {
+                string caption = Name;
+                if (!CanMakeRecipe)
+                {
+                    caption += " (Missing Ingredient)";
+                }
+                return caption;
+            }
+        }
+
         public string Description { get; set; } = "";
 
         public bool ShowAddons
