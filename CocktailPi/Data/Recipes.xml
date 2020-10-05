@@ -58,18 +58,8 @@
     <Add Name="Fresh Lemon Juice" QNty="1"/>
   </Recipe>
 
-  <Recipe Name="Rusty Nail" 
-          Description="A Rusty Nail is made by mixing Drambuie and Scotch whisky. A Rusty Nail can be served in an old-fashioned glass on the rocks, neat, or `up` in a stemmed glass. It is most commonly served over ice.  The drink was included in Difford's Guide's Top 100 Cocktails. "
-          History="According to cocktail historian David Wondrich, the Rusty Nail took a while to find its proper place in the world.  
-          The combination of Drambuie—`the world's most distinguished Scotch-based liqueur`—and the whisky it is made from first appears 
-          in 1937 in the form of the B.I.F., credited to one F. Benniman and ostensibly named after the British Industries Fair. 
-          Wondrich goes on to note that `it took another generation or so for the drink to assume its classic name and form, during 
-          which time it tried on several identities. 
-          The cocktail authority Dale DeGroff notes, `the Rusty Nail is often credited to the clever bartenders at the 21 Club in Manhattan sometime in the early 1960s.`
-          The cocktail's name was finally cemented in 1963, when Gina MacKinnon, the chairwoman of the Drambuie Liqueur Company, gave the Rusty Nail her endorsement 
-          in The New York Times. DeGroff observes that in the early 1960s `the Rat Pack was enamored of the drink, which may have been responsible for
-           the wide appeal in those years."
-          Image="Drink_RustyNail.jpg">
+  <Recipe Name="Rusty Nail" Description="A Rusty Nail is made by mixing Drambuie and Scotch whisky. The drink was included in Difford's Guide's Top 100 Cocktails. A Rusty Nail can be served in an old-fashioned glass on the rocks, neat, or `up` in a stemmed glass. It is most commonly served over ice."
+        Image="Drink_RustyNail.jpg">
     <Ingredient Name="Scotch" Qnty="1.5"/>
     <Ingredient Name="Drambuie" Qnty="0.75"/>
   </Recipe>

@@ -27,9 +27,6 @@
             <TextBlock  Text="{x:Bind Item.Description, Mode=OneWay}" Margin="12,0,0,6" FontSize="18"
                     Style="{ThemeResource BodyTextBlockStyle}"/>
 
-            <TextBlock  Text="{x:Bind Item.History, Mode=OneWay}" Margin="12,0,0,6" FontSize="18"
-                    Style="{ThemeResource BodyTextBlockStyle}"/>
-
             <Grid x:Name="gridDirections"  Margin="12,12,12,12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
