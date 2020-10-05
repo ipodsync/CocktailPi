@@ -22,6 +22,11 @@
                     <FontIcon Glyph="&#xE10F;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            <NavigationViewItem Content="eStop" Name="eStop" VerticalAlignment="Bottom">
+                <NavigationViewItem.Icon>
+                    <FontIcon x:Name="icoRecord" Glyph="&#xE1F5;" Height="24" FontSize="33" Foreground="Red" FontWeight="ExtraBold" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.MenuItems>
 
         <Frame x:Name="ContentFrame" Margin="12" x:FieldModifier="public">
