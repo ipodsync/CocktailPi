@@ -3,6 +3,7 @@
 
   <Recipe Name="Americano" 
           Description="The Americano is an IBA official cocktail composed of Campari, sweet vermouth, and for the sparkling version, club soda and garnished with a slice of lemon.  The cocktail was first served in creator Gaspare Campari's bar, Caffè Campari, in the 1860s"
+          History="A classic cocktail, the Americano was first served in the 1860s at Gaspare Campari's bar in Milan, Italy. It was originally named `Milano-Torino` because of the origins of its two primary ingredients: Campari calls Milan home and the sweet vermouth was made in the style of Torino, Italy. The cocktail was later renamed because of its popularity among American tourists around the turn of the 20th century and prior to Prohibition."
           Image="Drink_Americano.jpg">
     <Ingredient Name="Campari" Qnty="1"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
@@ -11,6 +12,7 @@
 
   <Recipe Name="Hanky Panky" 
           Description="The Hanky-Panky is a variation on the sweet martini, inasmuch as it calls for gin and sweet vermouth, but Coley's secret ingredient was Fernet-Branca, a bitter Italian digestivo. By adding a couple of dashes of this herbal elixir, she transformed it into a whole new drink.  "
+          History="The Hanky Panky was conceived by Ada ‘Coley’ Coleman, Head Bartender at the Savoy Hotel’s American Bar, at the start of the twentieth century. Coley served at The Savoy from 1903 until her retirement in 1926, bowing out with icon status and a famous cocktail to her name."
           Image="Drink_HankyPanky.jpg">
     <Ingredient Name="Campari" Qnty="1.5"/>
     <Ingredient Name="Red Vermouth" Qnty="1.5"/>
@@ -20,6 +22,7 @@
   
   <Recipe Name="Boulevardier (Bourbon + Aperol)"
           Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+          History="The Boulevardier, appeared in Harry’s 1927 bar guide, Barflies and Cocktails. It was the signature drink of Erskine Gwynne, expatriate writer, socialite and nephew of railroad tycoon Alfred Vanderbilt. Gwynne edited a monthly magazine, a sort of Parisian New Yorker, named The Boulevardier. Here’s an adapted version of its namesake cocktail. Obviously, this is a Negroni with bourbon in lieu of gin. The Negroni, however, would not see print for another 20 years, and Americans had never heard of Campari in 1927."
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Aperol" Qnty="1"/>
@@ -29,6 +32,7 @@
 
   <Recipe Name="Boulevardier (Bourbon)" 
           Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+          History="The Boulevardier, appeared in Harry’s 1927 bar guide, Barflies and Cocktails. It was the signature drink of Erskine Gwynne, expatriate writer, socialite and nephew of railroad tycoon Alfred Vanderbilt. Gwynne edited a monthly magazine, a sort of Parisian New Yorker, named The Boulevardier. Here’s an adapted version of its namesake cocktail. Obviously, this is a Negroni with bourbon in lieu of gin. The Negroni, however, would not see print for another 20 years, and Americans had never heard of Campari in 1927."
           Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="1"/>
@@ -37,16 +41,19 @@
 
 
   <Recipe Name="Boulevardier (Rye)"
-        Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
-        Image="Drink_Boulevardier.jpg">
+          Description="The boulevardier cocktail is an alcoholic drink composed of whiskey, sweet vermouth, and campari. Its creation is ascribed to Erskine Gwynne, an American-born writer who founded a monthly magazine in Paris called Boulevardier, which appeared from 1927 to 1932."
+          History="The Boulevardier, appeared in Harry’s 1927 bar guide, Barflies and Cocktails. It was the signature drink of Erskine Gwynne, expatriate writer, socialite and nephew of railroad tycoon Alfred Vanderbilt. Gwynne edited a monthly magazine, a sort of Parisian New Yorker, named The Boulevardier. Here’s an adapted version of its namesake cocktail. Obviously, this is a Negroni with bourbon in lieu of gin. The Negroni, however, would not see print for another 20 years, and Americans had never heard of Campari in 1927."
+          Image="Drink_Boulevardier.jpg">
     <Ingredient Name="Rye" Qnty="1.25"/>
     <Ingredient Name="Campari" Qnty="0.75"/>
     <Ingredient Name="Red Vermouth" Qnty="0.75"/>
   </Recipe>
 
   
-  <Recipe Name="Bourbon Old Fashioned" 
+  <Recipe Name="Old Fashioned (Bourbon)" 
           Description="The old fashioned is a cocktail made by muddling sugar with bitters, adding whiskey or, less commonly, brandy, and garnishing with a twist of citrus rind and a cocktail cherry. It is traditionally served in an old fashioned glass, which predated the cocktail."
+          History="The Pendennis Club, a gentlemen's club founded in 1881 in Louisville, Kentucky, claims the old fashioned cocktail was invented there. The recipe was said to have been invented by a bartender at that club in honor of Colonel James E. Pepper, a prominent bourbon distiller, who brought it to the Waldorf-Astoria Hotel bar in New York City. 
+Cocktail critic David Wonderich finds this origin story unlikely however, as the first mention in print of `old fashioned cocktails` was in the Chicago Daily Tribune in February 1880, before the Pendennis Club was opened; this in addition to the fact that the old fashioned was simply a re-packaging of a drink that had long existed."
           Image="Drink_BourbonOldFashioned.jpg">
     <Ingredient Name="Bourbon" Qnty="2"/>
     <Dash Name="Angostura Bitters" Qnty="3"/>
@@ -58,6 +65,8 @@
   
   <Recipe Name="Manhattan (Bourbon)" 
           Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
+          History="There are many theories to how the Manhattan came about and the most popular of these is that in the early 1880s Dr Iain Marshall came up with the recipe for a party that was held at the Manhattan Club in New York City by Lady Randolph Churchill, Winston’s mother. Many people in the industry now believe that this story is a myth and that at the time Lady Randolph Churchill was pregnant (with Winston!) and at home in England, therefore not partying in New York.
+Some now think that a man going by the name of ‘Black’ invented the cocktail at the famed Hoffman House in New York City. Whichever story you choose to believe The Manhattan Club still lays claim to the ownership of the recipe to this very day and the cocktail is still widely available in bars, restaurants and cafes throughout the world and is regarded by many bartenders as one of the best cocktails to ever have been served."
           Image="Drink_Manhattan.jpg">
     <Ingredient Name="Bourbon" Qnty="2.5"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
@@ -69,6 +78,8 @@
   
   <Recipe Name="Manhattan (Rye)" 
           Description="A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey."
+          History="There are many theories to how the Manhattan came about and the most popular of these is that in the early 1880s Dr Iain Marshall came up with the recipe for a party that was held at the Manhattan Club in New York City by Lady Randolph Churchill, Winston’s mother. Many people in the industry now believe that this story is a myth and that at the time Lady Randolph Churchill was pregnant (with Winston!) and at home in England, therefore not partying in New York.
+Some now think that a man going by the name of ‘Black’ invented the cocktail at the famed Hoffman House in New York City. Whichever story you choose to believe The Manhattan Club still lays claim to the ownership of the recipe to this very day and the cocktail is still widely available in bars, restaurants and cafes throughout the world and is regarded by many bartenders as one of the best cocktails to ever have been served."
           Image="Drink_Manhattan.jpg">
     <Ingredient Name="Rye" Qnty="2.5"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
@@ -80,6 +91,8 @@
 
   <Recipe Name="Martinez"
           Description="The Martinez is a classic cocktail that is widely regarded as the direct precursor to the Martini.  It serves as the basis for many modern cocktails, and several different versions of the original exist. These are generally distinguished by the accompaniment of either Maraschino or Curacao, as well as differences in gin or bitters."
+          History="Of all the cocktails proudly wearing the ‘classic’ badge, the Martinez is perhaps the most deserving. Often named the Father of the Martini, this is an old, old drink with a beautiful, burnt honey colour and a complicated but well-balanced, taste.
+This is a perfectly elegant post-dinner cocktail but carries enough spirit to see you through a night of debauchery. An added bonus for those still trapped in the quagmire of dating, is how much you can upsell your sophistication levels on a first date by ordering a this drink. Just don’t get smug about it – you should have been ordering these for a long time now."
           Image="Drink_Martinez.jpg">
     <Ingredient Name="Gin" Qnty="1"/>
     <Ingredient Name="Red Vermouth" Qnty="1"/>
@@ -90,6 +103,7 @@
 
   <Recipe Name="Negroni" 
           Description="The Negroni is a popular Italian cocktail, made of one part gin, one part vermouth rosso, and one part Campari, garnished with orange peel. It is considered an apéritif. A traditionally made Negroni is stirred, not shaken, and built over ice in an old-fashioned or rocks glass and garnished with a slice of orange."
+          History="Thought to have been invented in 1919, in Florence, Italy at Caffè Casoni. The story goes that Count Camillo Negroni asked his friend and bartender Fosco Scarselli, to strengthen his favourite cocktail, the Americano*. He did so by switching the soda for gin and garnished it with an orange peel to signify it was a different drink. Soon, everyone was coming into the bar and ordering a ‘Count Negroni."
           Image="Drink_Negroni.jpg">
     <Ingredient Name="Gin" Qnty="1"/>
     <Ingredient Name="Campari" Qnty="1"/>
@@ -109,6 +123,8 @@
   
   <Recipe Name="Rusty Bob"
           Description="A Rusty Bob is a variation of the Rusty Nail which substitutes Bourbon whisky for blended Scotch whisky.   A Rusty Bob can be served in an old-fashioned glass on the rocks, neat, or `up` in a stemmed glass. It is most commonly served over ice."
+          History="Rusty Bob is an American cocktail that is essentially a variation of the famous Rusty Nail. It is made with a combination of bourbon and Drambuie liqueur. In order to prepare it, both ingredients should be poured into an ice-filled old-fashioned glass, then stirred.
+The cocktail is typically garnished with a lemon twist before serving."
           Image="Drink_RustyNail.jpg">
     <Ingredient Name="Bourbon" Qnty="1.25"/>
     <Ingredient Name="Drambuie" Qnty="1"/>
@@ -117,14 +133,21 @@
   
   <Recipe Name="Rusty Nail" 
           Description="A Rusty Nail is made by mixing Drambuie and Scotch whisky. The drink was included in Difford's Guide's Top 100 Cocktails. A Rusty Nail can be served in an old-fashioned glass on the rocks, neat, or `up` in a stemmed glass. It is most commonly served over ice."
+          History="According to cocktail historian David Wondrich, the Rusty Nail took a while to find its proper place in the world.  The combination of Drambuie and the whisky it is made from first appears in 1937 and ostensibly named after the British Industries Fair. 
+Dale DeGroff notes, the Rusty Nail is often credited to the clever bartenders at the 21 Club in Manhattan sometime in the early 1960s. The cocktail's name was finally cemented in 1963, when Gina MacKinnon, the chairwoman of the Drambuie Liqueur Company, gave the Rusty Nail her endorsement in The New York Times.
+In the early 1960s the Rat Pack was enamored of the drink, which may have been responsible for the wide appeal in those years."
           Image="Drink_RustyNail.jpg">
     <Ingredient Name="Scotch" Qnty="1.25"/>
     <Ingredient Name="Drambuie" Qnty="1"/>
   </Recipe>
 
   
-  <Recipe Name="White Lady" Description="White Lady is a classic cocktail that was made with cointreau or Triple Sec, fresh lemon juice and an optional egg white.  It belongs to the sidecar family, made with gin in place of brandy. "
-  Image="Drink_WhiteLady.jpg">
+  <Recipe Name="White Lady" 
+          Description="White Lady is a classic cocktail that was made with cointreau or Triple Sec, fresh lemon juice and an optional egg white.  It belongs to the sidecar family, made with gin in place of brandy. "
+          History="Like many classic cocktails, several different people have claimed to have created The White Lady.
+It was originally believed to have been created by famous bartender Harry McElhone while he was working at London’s Ciro Club in 1919. At that time, he used equal parts of white crème de menthe, triple sec and lemon juice. It was not until he had his own Harry’s New York Bar in Paris, in 1923, that he adapted the recipe by swapping the crème de menthe with gin.
+Harry Craddock, of The American Bar at The Savoy in London also gets a fair bit of credit. In 1930 he published the recipe in his Savoy Cocktail Book, increasing the volume of gin and therefore making the drink drier."
+          Image="Drink_WhiteLady.jpg">
     <Ingredient Name="Gin" Qnty="2"/>
     <Ingredient Name="Orange Liqueur" Qnty="1"/>
     <Extra Name="1 shot lemon juice"/>

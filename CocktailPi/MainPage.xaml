@@ -14,7 +14,7 @@
                     IsBackButtonVisible="Collapsed"
                     IsPaneToggleButtonVisible="False"
                     BackRequested="NavView_BackRequested"
-                    Loaded="NavView_Loaded">
+                    Loaded="NavView_Loaded" Width="800" Height="480">
 
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Home" Name="pageHome">

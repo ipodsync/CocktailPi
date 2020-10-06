@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -62,7 +63,7 @@ namespace CocktailPi
             switch (item.Name)
             {
                 case "pageHome":
-                    ContentFrame.Navigate(typeof(HomePage));
+                    ContentFrame.Navigate(typeof(HomePage), null, new SuppressNavigationTransitionInfo());
                     break;
 
                 case "eStop":
@@ -70,7 +71,7 @@ namespace CocktailPi
                     break;
 
                 case "pageBottles":
-                    ContentFrame.Navigate(typeof(PumpsPage));
+                    ContentFrame.Navigate(typeof(PumpsPage), null, new SuppressNavigationTransitionInfo());
                     break;
             }
         }
