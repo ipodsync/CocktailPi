@@ -58,14 +58,18 @@ namespace CocktailPi
 
         public string Caption
         {
+            get => Name;
+        }
+
+        public string Status
+        {
             get
             {
-                string caption = Name;
                 if (!CanMakeRecipe)
                 {
-                    caption += " (Missing Ingredient)";
+                    return " (Missing Ingredient)";
                 }
-                return caption;
+                return "";
             }
         }
 
@@ -112,6 +116,8 @@ namespace CocktailPi
                 return true;
             }
         }
+
+        public bool CannotMakeRecipe { get => !CanMakeRecipe; }
 
         int _executionProgress = 0;
         public int ExecutionProgress

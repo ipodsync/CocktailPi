@@ -27,7 +27,7 @@ namespace CocktailPi
         {
             this.InitializeComponent();
             Items = Cocktail.Pumps;
-            
+
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -82,5 +82,14 @@ namespace CocktailPi
             }
         }
 
+        private void cmdEmpty_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Pump pump = button?.DataContext as Pump;
+            if (pump != null)
+            {
+                pump.Ingredient = "";                
+            }
+        }
     }
 }

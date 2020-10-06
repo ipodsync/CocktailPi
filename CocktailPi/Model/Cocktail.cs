@@ -57,12 +57,12 @@ namespace CocktailPi
             {
                 p.Stop();
             }
-            player.Pause();
+            player?.Pause();
         }
 
 
 
-        static void StepDelay(long us = 600)
+        static void StepDelay(long us = 700)
         {
             var sw = Stopwatch.StartNew();
             long v = (us * Stopwatch.Frequency) / 1000000;
@@ -122,7 +122,7 @@ namespace CocktailPi
             AddPump("C1", "", 6);
             AddPump("C2", "", 13);
             AddPump("C3", "", 19);
-            AddPump("C4", "", 16);
+            AddPump("C4", "", 26);
 
             Pumps.LoadConfiguration();
 

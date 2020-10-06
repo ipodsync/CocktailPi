@@ -20,7 +20,7 @@ namespace CocktailPi
             foreach (XmlElement node in doc.SelectNodes("//Ingredient"))
             {
                 string ingredient = node.GetAttribute("Name");
-                if (!ingredients.Contains(ingredient))
+                if (!string.IsNullOrEmpty(ingredient) && !ingredients.Contains(ingredient))
                     ingredients.Add(ingredient);
             }
 
@@ -29,7 +29,6 @@ namespace CocktailPi
             {
                 Ingredient ing = new Ingredient(ingredient);
                 Add(ing);
-
             }
         }
     }

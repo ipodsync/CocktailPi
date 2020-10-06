@@ -16,7 +16,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="0" Grid.RowSpan="2" Source="{x:Bind Item.Image}" Width="128" Margin="6,0,6,0"
+        <Image Grid.Column="0" Grid.RowSpan="2" Source="{x:Bind Item.Image}" Width="128" Margin="12,12,6,0"
                      HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
         
         <StackPanel Grid.Column="1" Orientation="Vertical" Margin="6,0,0,0">
